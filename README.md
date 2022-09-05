@@ -1,4 +1,4 @@
-# follow-trip-vue
+# 2022 SW프로젝트 경진대회_따라와입
 
 ## Project setup
 ```

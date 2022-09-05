@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #F9F9FD;
+  z-index: 2;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+.loginbtn {
+  color: white;
+  background-color: #1C60FF;
+  border-color: #1C60FF;
+}
