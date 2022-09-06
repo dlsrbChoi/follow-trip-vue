@@ -2,7 +2,6 @@
     color: #333333;
 }
 header {
-    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,6 +9,7 @@ header {
     background-color: #ffffff;
     z-index: 2;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -106,4 +106,5 @@ a.router-link-exact-active {
 }
 .app-contents {
     height: calc(100% - 64px - 102px);
+    padding-top: 60px;
 }
