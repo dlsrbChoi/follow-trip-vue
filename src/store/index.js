@@ -5,6 +5,7 @@ import {
   getUserFromCookie,
   saveAuthToCookie,
   saveUserToCookie,
+  deleteCookie,
 } from "@/utils/cookies";
 import { loginUser } from "@/api/auth";
 
@@ -16,33 +17,36 @@ export default new Vuex.Store({
     token: getAuthFromCookie() || "",
   },
   getters: {
-    isLogin(state) {
-      return state.username !== "";
+    isLoggedIn(state) {
+      return state.token || getUserFromCookie();
+    },
+    userToken(state) {
+      return state.token;
     },
   },
   mutations: {
-    setUsername(state, username) {
-      state.username = username;
+    SET_USER(state, user) {
+      state.user = user;
     },
-    clearUsername(state) {
-      state.username = "";
-    },
-    setToken(state, token) {
+    SET_TOKEN(state, token) {
       state.token = token;
     },
-    clearToken(state) {
-      state.token = "";
+    LOGOUT(state) {
+      state.user = null;
+      state.token = null;
+      deleteCookie("member_auth");
+      deleteCookie("member_user");
     },
   },
   actions: {
-    async LOGIN({ commit }, userData) {
-      const { data } = await loginUser(userData);
-      console.log(data.token);
-      commit("setToken", data.token);
-      commit("setUsername", data.user.username);
-      saveAuthToCookie(data.token);
-      saveUserToCookie(data.user.username);
-      return data;
+    async LOGIN({ commit }, data) {
+      const response = await loginUser(data);
+      console.log(data);
+      commit("SET_USER", response.data.user);
+      commit("SET_TOKEN", response.data.token);
+      saveUserToCookie(response.data.user.username);
+      saveAuthToCookie(response.data.token);
+      return response;
     },
   },
 });

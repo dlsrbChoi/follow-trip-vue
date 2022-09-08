@@ -1,18 +1,27 @@
 .username {
     color: #333333;
 }
+/*header {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 10px 20px;*/
+/*    background-color: #ffffff;*/
+/*    z-index: 2;*/
+/*    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    z-index: 2;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    background-color: #ffffff;
+    padding: 0 20px;
+    z-index: 3;
 }
 a {
     color: white;
@@ -50,6 +59,7 @@ a.logo {
     background: #1c60ff;
     border-radius: 4px;
     text-decoration: none;
+    color: white;
 }
 .signupBtn {
     flex-direction: row;
@@ -107,4 +117,21 @@ a.router-link-exact-active {
 .app-contents {
     height: calc(100% - 64px - 102px);
     padding-top: 60px;
+}
+.form .validation-text {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.warning {
+    color: #ff4057;
+    font-size: 12px;
+}
+.normal {
+    color: #333333;
+    font-size: 12px;
 }
