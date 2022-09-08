@@ -27,29 +27,55 @@
   </head>
   <body>
     <div class="container">
-      <div class="mt-5 fs-1 text-center">회원가입</div>
-      <div class="mt-2 mb-5 text-center">
-        이미 따라와입의 회원이신가요?
-        <strong><a href="login.html" style="text-decoration: none;">로그인하러가기</a></strong>
-      </div>
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <i class="fa-solid fa-plane"></i>
+          <span class="ms-3">따라와입</span>
+        </a>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 link-secondary">메인페이지</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">일정표 거래</a></li>
+        </ul>
 
-      <div class="fs-2 mt-3 mb-3">추가정보 입력하기</div>
+        <div class="col"></div>
 
-      <div class="input-group mb-2">
-        <input type="text" class="form-control" id="address" placeholder="주소 검색하기">
-      </div>
-      <div class="input-group mb-5">
-        <input type="text" class="form-control" id="detailAddress" placeholder="상세주소 입력하기">
-      </div>
-      <div class="input-group date">
-        <input type="text" class="form-control" placeholder="생년월일" style="border-right: none;"/>
-        <button class="btn btn-outline-secondary" style="border: 1px solid rgb(206, 212, 218); border-left: none;" type="button" id="duplicateCheck"><i class="fa-regular fa-calendar-days"></i></button>
-      </div>
-      <div class="d-flex justify-content-end gap-1 mt-5 mb-5">
-        <button type="button" class="btn btn-outline-dark">건너뛰기</button>
-        <button type="button" class="btn btn-secondary">다음으로</button>
-      </div>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+  
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-outline-primary me-2">로그인</button>
+          <button type="button" class="btn btn-primary">회원가입</button>
+        </div>
+      </header>
     </div>
 
+    <div class="pt-5 pb-5" style="background-color: gray; z-index: -1;">
+      <div class="container pt-3 pb-3 px-3 px-5" style="width: 45%; background-color: white; border-radius: 10px;"">
+        <div class="mt-5 fs-1 text-center">회원가입</div>
+        <div class="mt-2 mb-5 text-center">
+          이미 따라와입의 회원이신가요?
+          <strong><a href="login.html" style="text-decoration: none;">로그인하러가기</a></strong>
+        </div>
+
+        <div class="fs-5 mt-3 mb-3 mx-2">추가정보 입력하기</div>
+
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" id="address" placeholder="주소 검색하기">
+        </div>
+        <div class="input-group mb-5">
+          <input type="text" class="form-control" id="detailAddress" placeholder="상세주소 입력하기">
+        </div>
+        <div class="input-group date">
+          <input type="text" class="form-control" placeholder="생년월일" style="border-right: none;"/>
+          <button class="btn btn-outline-secondary" style="border: 1px solid rgb(206, 212, 218); border-left: none;" type="button" id="duplicateCheck"><i class="fa-regular fa-calendar-days"></i></button>
+        </div>
+        <div class="d-flex justify-content-end gap-1 mt-5 mb-5">
+          <button type="button" class="btn btn-outline-dark">건너뛰기</button>
+          <button type="button" class="btn btn-secondary">다음으로</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
