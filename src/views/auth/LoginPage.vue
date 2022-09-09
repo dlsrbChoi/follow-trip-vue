@@ -64,7 +64,12 @@
       </div>
 
       <div class="mb-5">
-        <button type="button" class="btn btn-warning" style="width: 100%">
+        <button
+          type="button"
+          class="btn btn-warning"
+          @click="kakaoLogin()"
+          style="width: 100%"
+        >
           카카오톡 간편 로그인
         </button>
       </div>
@@ -116,6 +121,9 @@ export default {
     initForm() {
       this.username = "";
       this.password = "";
+    },
+    kakaoLogin() {
+      console.log("Kakao 로그인");
     },
   },
 };

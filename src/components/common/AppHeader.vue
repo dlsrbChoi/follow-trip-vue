@@ -26,7 +26,7 @@
 
       <div class="col"></div>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+      <form class="col-2 mb-3 mb-lg-0">
         <input
           type="search"
           class="form-control"
@@ -39,7 +39,11 @@
       <template v-if="!isLoggedIn">
         <div class="col-md-3 text-end">
           <router-link to="/signup"
-            ><button type="button" class="btn btn-outline-primary me-2">
+            ><button
+              type="button"
+              class="btn btn-outline-light me-2"
+              style="color: #333333"
+            >
               회원가입
             </button></router-link
           >
@@ -51,6 +55,7 @@
 
       <template v-else>
         <div class="col-md-3 text-end">
+          <span style="margin-right: 10px">슈퍼관리자님</span>
           <a
             href="javascript:"
             @click="logoutUser"

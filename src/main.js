@@ -13,6 +13,8 @@ Vue.use(BootstrapVue);
 
 Object.keys(filters).forEach((key) => Vue.filter(key, filters[key]));
 
+window.Kakao.init("9fec04fa20baed0ee099cd83c9111472");
+
 new Vue({
   router,
   store,
