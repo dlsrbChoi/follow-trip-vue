@@ -14,6 +14,7 @@ const router = new VueRouter({
     },
     {
       path: "/login",
+      name: "LoginPage",
       component: () => import("@/views/auth/LoginPage"),
       beforeEnter(to, from, next) {
         store.getters["isLoggedIn"] ? next("/main") : next();
@@ -21,15 +22,28 @@ const router = new VueRouter({
     },
     {
       path: "/signup",
+      name: "SignupPage",
       component: () => import("@/views/auth/SignupPage"),
     },
     {
       path: "/main",
+      name: "MainPage",
       component: () => import("@/views/MainPage"),
     },
     {
       path: "/schedule",
+      name: "SchedulePage",
       component: () => import("@/views/SchedulePage"),
+    },
+    {
+      path: "/schedule/detail/:no",
+      name: "ScheduleDetailPage",
+      component: () => import("@/views/ScheduleDetailPage"),
+    },
+    {
+      path: "/schedule/create",
+      name: "ScheduleCreatePage",
+      component: () => import("@/views/ScheduleCreatePage"),
     },
   ],
 });
