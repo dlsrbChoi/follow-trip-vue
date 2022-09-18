@@ -16,6 +16,7 @@
               aria-label=".form-select-sm example"
               style="border: none"
               v-model="local"
+              @change="changeLocal"
             >
               <option value="">선택</option>
               <option value="수도권">수도권</option>
@@ -23,9 +24,9 @@
               <option value="충청북도">충청북도</option>
               <option value="충청남도">충청남도</option>
               <option value="경상북도">경상북도</option>
-              <option value="경상북도">경상북도</option>
+              <option value="경상남도">경상남도</option>
               <option value="전라북도">전라북도</option>
-              <option value="전라북도">전라북도</option>
+              <option value="전라남도">전라남도</option>
               <option value="제주도">제주도</option>
             </select>
           </div>
@@ -44,16 +45,123 @@
         type="button"
         class="btn btn-secondary btn-sm me-2"
         style="background-color: #e32066; border: none"
+        @click="openModal"
       >
         태그 추가하기 +
       </button>
 
-      <button type="button" class="btn btn-light btn-sm me-5">초기화</button>
-      <button type="button" class="btn btn-primary btn-sm me-2">
-        #지하철 ⨉
+      <button
+        type="button"
+        class="btn btn-light btn-sm me-5"
+        @click="resetHashtagList"
+      >
+        초기화
       </button>
-      <button type="button" class="btn btn-primary btn-sm me-2">#맛집 ⨉</button>
-      <button type="button" class="btn btn-primary btn-sm">#데이트 ⨉</button>
+
+      <button
+        v-for="(item, index) in hashtagList"
+        :key="index"
+        type="button"
+        class="btn btn-primary btn-sm me-1 ms-1"
+        @click="removeHashtagItem(index)"
+      >
+        #{{ item }} X
+      </button>
+
+      <!-- 컴포넌트 MyModal -->
+      <HashtagModal @close="closeModal" v-if="hashtagModal">
+        <template slot="header"> 해시태그 </template>
+        <!-- default 슬롯 콘텐츠 -->
+        <div>#이동수단</div>
+        <div>
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#자동차"
+            @click="addHashtag('자동차')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#지하철"
+            @click="addHashtag('지하철')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#기차"
+            @click="addHashtag('기차')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#버스"
+            @click="addHashtag('버스')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#택시"
+            @click="addHashtag('택시')"
+          />
+        </div>
+        <div>#취향</div>
+        <div>
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#데이트"
+            @click="addHashtag('데이트')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#액티비티"
+            @click="addHashtag('액티비티')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#맛집"
+            @click="addHashtag('맛집')"
+          />
+          <input
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            value="#놀거리"
+            @click="addHashtag('놀거리')"
+          />
+        </div>
+        <div>#선택한 태그</div>
+        <div>
+          <button
+            v-for="(item, index) in hashtagList"
+            :key="index"
+            type="button"
+            class="btn btn-primary btn-sm me-1 ms-1"
+            @click="removeHashtagItem(index)"
+          >
+            #{{ item }} X
+          </button>
+        </div>
+        <!-- /default -->
+        <!-- footer 슬롯 콘텐츠 -->
+        <template slot="footer">
+          <button
+            @click="doSend"
+            class="btn btn-primary btn-sm"
+            style="
+              border-color: #e32066;
+              background-color: #e32066;
+              color: #ffffff;
+              width: 100%;
+            "
+          >
+            추가하기
+          </button>
+        </template>
+        <!-- /footer -->
+      </HashtagModal>
     </div>
 
     <div class="row mt-5">
@@ -129,18 +237,20 @@
 </template>
 
 <script>
+import HashtagModal from "@/components/modals/HashtagModal";
+
 export default {
   name: "SchedulePage",
-  components: {},
-  created() {},
+  components: { HashtagModal },
   data() {
     return {
-      hashtag: "",
+      hashtagList: [],
       local: "",
       hashtagModal: false,
       scheduleList: [
         {
           id: 0,
+          local: "강원도",
           thumbnail: "",
           hashtag: "데이트",
           title: "강원도 여행",
@@ -149,6 +259,7 @@ export default {
         },
         {
           id: 1,
+          local: "충청북도",
           thumbnail: "",
           hashtag: "맛집",
           title: "충북 여행",
@@ -157,6 +268,7 @@ export default {
         },
         {
           id: 2,
+          local: "충청남도",
           thumbnail: "",
           hashtag: "놀거리",
           title: "충남 여행",
@@ -165,6 +277,7 @@ export default {
         },
         {
           id: 3,
+          local: "수도권",
           thumbnail: "",
           hashtag: "데이트",
           title: "수도권 여행",
@@ -173,6 +286,7 @@ export default {
         },
         {
           id: 4,
+          local: "경상북도",
           thumbnail: "",
           hashtag: "엑티비티",
           title: "경북 여행",
@@ -181,6 +295,7 @@ export default {
         },
         {
           id: 5,
+          local: "전라북도",
           thumbnail: "",
           hashtag: "기차",
           title: "전북 여행",
@@ -189,6 +304,7 @@ export default {
         },
         {
           id: 6,
+          local: "전라남도",
           thumbnail: "",
           hashtag: "자동차",
           title: "전남 여행",
@@ -197,6 +313,7 @@ export default {
         },
         {
           id: 7,
+          local: "경상남도",
           thumbnail: "",
           hashtag: "여행",
           title: "경남 여행",
@@ -205,6 +322,7 @@ export default {
         },
         {
           id: 8,
+          local: "제주도",
           thumbnail: "",
           hashtag: "맛집",
           title: "제주도 여행",
@@ -214,7 +332,39 @@ export default {
       ],
     };
   },
-  methods: {},
+  created() {
+    this.getScheduleList();
+  },
+  methods: {
+    addHashtag(value) {
+      if (this.hashtagList.includes(value)) {
+        return false;
+      } else {
+        this.hashtagList.push(value);
+      }
+    },
+    removeHashtagItem(index) {
+      this.hashtagList.splice(index, 1);
+    },
+    openModal() {
+      this.hashtagModal = true;
+    },
+    closeModal() {
+      this.hashtagModal = false;
+    },
+    resetHashtagList() {
+      this.hashtagList = [];
+    },
+    doSend() {
+      this.closeModal();
+    },
+    getScheduleList() {
+      console.log(this.scheduleList.length);
+    },
+    changeLocal() {
+      console.log(this.local);
+    },
+  },
 };
 </script>
 
