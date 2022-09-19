@@ -41,13 +41,18 @@ const router = new VueRouter({
       component: () => import("@/views/ScheduleDetailPage"),
     },
     {
+      path: "/schedule/detail/purchase/:no",
+      name: "AfterBuySchedulePage",
+      component: () => import("@/views/AfterBuySchedulePage"),
+    },
+    {
       path: "/schedule/create",
       name: "ScheduleCreatePage",
       component: () => import("@/views/ScheduleCreatePage"),
     },
     {
       path: "/test",
-      component: () => import("@/test/Test"),
+      component: () => import("@/test/imageUpload"),
     },
   ],
 });

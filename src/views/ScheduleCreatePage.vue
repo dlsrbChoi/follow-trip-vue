@@ -156,29 +156,32 @@
 
     <div>
       <div class="mt-4 mb-3">
-        <span class="fs-4"><strong>썸네일</strong></span>
-        <button
-          type="button"
-          class="btn btn-secondary btn-sm ms-3"
-          style="background-color: #e32066; border: none"
-        >
-          추가하기 +
-        </button>
+        <span class="fs-4">
+          <span class="mx-2" style="color: red">*</span><strong>썸네일</strong>
+          <input
+            class="form-control form-control-sm mt-3"
+            id="formFileSm"
+            type="file"
+            @change="handleFileChange"
+            style="width: 50%"
+          />
+        </span>
+        <div>
+          <label class="form-label mt-3" for="customFile">
+            {{ thumbnail.file_name }}
+          </label>
+          <div>
+            <img
+              v-if="thumbnail.img_src"
+              :src="thumbnail.img_src"
+              width="500"
+              height="380"
+              alt=""
+            />
+          </div>
+        </div>
       </div>
       <div class="mb-3 border-bottom">
-        <label
-          for="formFile"
-          class="form-label fs-1 border text-center mb-4"
-          style="
-            width: 360px;
-            height: 240px;
-            background-color: rgb(246, 242, 242);
-          "
-        >
-          <span class="h-100 d-flex align-items-center justify-content-center"
-            >+</span
-          >
-        </label>
         <input
           class="form-control"
           type="file"
@@ -384,18 +387,25 @@
               </div>
               <div class="input-group col">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   style="border-right: none; text-align: right"
                   placeholder="가격을 입력해주세요."
                   v-model="n.price"
-                  @change="sumPrice(i)"
+                  @change="sumItemPrice(index, i), sumTotalPrice(index, i)"
                 />
                 <span
                   class="input-group-text"
                   style="background-color: white; border-left: none"
                   >원</span
                 >
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  @click="removePrice(index, i)"
+                >
+                  X
+                </button>
               </div>
             </div>
             <div class="row ps-3 pe-3">
@@ -422,14 +432,14 @@
     <div class="row justify-content-around border-bottom fs-3 pb-3 pt-3">
       <div class="col"><strong>일정 예상금액</strong></div>
       <div class="col text-end">
-        <span style="color: red">50,000</span>
+        <span style="color: red">{{ totalPrice }}</span>
         <span>원</span>
       </div>
     </div>
 
     <div class="row pt-3 border-top mt-2 mb-4">
       <span class="d-flex align-items-center col fs-3" style="color: red"
-        >* <span class="ms-2" style="color: black">추천 내용</span></span
+        >* <span class="ms-2" style="color: black">내 일정 추천내용</span></span
       >
       <TextEditor class="mt-3" v-model="recommendPlanContents" />
     </div>
@@ -459,7 +469,9 @@
     </div>
 
     <div class="d-flex justify-content-end gap-1 mt-5 mb-5">
-      <button type="button" class="btn btn-outline-dark">취소</button>
+      <button type="button" class="btn btn-outline-dark" @click="cancel">
+        취소
+      </button>
       <button type="button" class="btn btn-danger">저장</button>
     </div>
   </div>
@@ -479,7 +491,11 @@ export default {
       hashtag: "",
       hashtagList: [],
       hashtagModal: false,
-      thumbnail: {}, // 썸네일 파일
+      thumbnail: {
+        file_name: "파일을 선택하세요.",
+        file: "",
+        img_src: "",
+      }, // 썸네일 파일
       thumbnailId: "",
 
       planList: [
@@ -496,14 +512,14 @@ export default {
           itemList: [
             {
               itemTitle: "",
-              price: "",
+              price: 0,
             },
           ],
-          sumItemPrice: "",
+          sumItemPrice: 0,
         },
       ],
 
-      totalPrice: "",
+      totalPrice: 0,
       recommendPlanContents: "",
       guideCheck: "2",
 
@@ -547,10 +563,10 @@ export default {
         itemList: [
           {
             itemTitle: "",
-            price: "",
+            price: 0,
           },
         ],
-        sumItemPrice: "",
+        sumItemPrice: 0,
       });
     },
     addPriceList(id) {
@@ -559,9 +575,7 @@ export default {
         price: "",
       });
     },
-    sumPrice(i) {
-      console.log(i);
-    },
+
     planIdUp(id) {
       if (id === 0) {
         return false;
@@ -594,9 +608,47 @@ export default {
     removeAll() {
       this.planList.splice(0, this.planList.length);
     },
+    removePrice(index, id) {
+      this.planList[index].sumItemPrice -= Number(
+        this.planList[index].itemList[id].price
+      );
+      this.totalPrice -= Number(this.planList[index].itemList[id].price);
+      this.planList[index].itemList.splice(id, 1);
+    },
+    handleFileChange(e) {
+      let file = e.target.files[0];
+      let name = file.name;
+      this.thumbnail.file_name = file.name;
+      this.thumbnail.file = file;
+      if (
+        name.endsWith(".jpg") ||
+        name.endsWith(".jpeg") ||
+        name.endsWith(".png") ||
+        name.endsWith(".gif")
+      )
+        this.thumbnail.img_src = URL.createObjectURL(file);
+      else this.thumbnail.img_src = "";
+    },
+    cancel() {
+      this.$router.push("/schedule");
+    },
+    sumItemPrice(index, i) {
+      this.planList[index].sumItemPrice += Number(
+        this.planList[index].itemList[i].price
+      );
+      return Number(this.planList[index].sumItemPrice);
+    },
+    sumTotalPrice(index, i) {
+      this.totalPrice += Number(this.planList[index].itemList[i].price);
+    },
   },
-  computed: {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>

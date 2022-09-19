@@ -1,10 +1,9 @@
 <template>
-  <!--  <div style="background-color: gray; color: white">-->
-  <!--    <div class="pt-5 fs-3 text-center">일정표 거래</div>-->
-  <!--    <div class="pb-5 fs-6 text-center">내가 만든 일정이 수익이 됩니다</div>-->
-  <!--  </div>-->
-
   <div class="container">
+    <!--    <div style="background-color: gray; color: white">-->
+    <!--      <div class="pt-5 fs-3 text-center">일정표 거래</div>-->
+    <!--      <div class="pb-5 fs-6 text-center">내가 만든 일정이 수익이 됩니다</div>-->
+    <!--    </div>-->
     <div class="border-bottom row justify-content-between pt-5 pb-2">
       <div class="col-3 row">
         <div class="hstack gap-3 ms-3">
@@ -358,12 +357,8 @@ export default {
     doSend() {
       this.closeModal();
     },
-    getScheduleList() {
-      console.log(this.scheduleList.length);
-    },
-    changeLocal() {
-      console.log(this.local);
-    },
+    getScheduleList() {},
+    changeLocal() {},
   },
 };
 </script>
