@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="width: 65%">
     <div class="mt-5 border-bottom pb-2">
       <span class="fs-4"><strong>일정표 만들기</strong></span>
       <span class="ms-3" style="color: red">*</span
@@ -320,36 +320,6 @@
             aria-label="default input example"
             v-model="item.addr"
           />
-          <span
-            class="col-2 ms-3 border-start d-flex align-items-center justify-content-center fs-5"
-            ><strong>이미지 추가하기</strong></span
-          >
-          <label
-            for="formFile"
-            class="col-2 form-label fs-3 border text-center"
-            style="
-              width: 88px;
-              height: 48px;
-              background-color: rgb(246, 242, 242);
-            "
-          >
-            <span class="h-100 d-flex align-items-center justify-content-center"
-              >+</span
-            >
-          </label>
-          <label
-            for="formFile"
-            class="col-2 ms-3 form-label fs-3 border text-center"
-            style="
-              width: 88px;
-              height: 48px;
-              background-color: rgb(246, 242, 242);
-            "
-          >
-            <span class="h-100 d-flex align-items-center justify-content-center"
-              >+</span
-            >
-          </label>
         </div>
         <div class="p-3">
           <span class="d-flex align-items-center fs-5" style="color: red"
@@ -359,6 +329,52 @@
             ></span
           >
           <TextEditor class="mt-3" v-model="item.recommendPlaceContents" />
+        </div>
+        <div class="p-3">
+          <span class="d-flex align-items-center fs-5" style="color: red"
+            >*
+            <span class="ms-2" style="color: black">
+              <strong>관련 이미지</strong>
+              <button
+                type="button"
+                class="btn btn-light btn-sm ms-2"
+                @click="addImageList(index)"
+              >
+                추가하기
+              </button>
+            </span>
+          </span>
+          <div v-for="(m, i) in item.image" :key="i">
+            <div>
+              <input
+                class="form-control form-control-sm mt-3"
+                id="formFileSm"
+                type="file"
+                @change="handleImageChange(index, i)"
+                style="width: 50%"
+              />
+            </div>
+            <label class="form-label mt-3" for="customFile">
+              {{ m.file_name }}
+            </label>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm mx-2"
+              @click="removeImg(index, i)"
+            >
+              X
+            </button>
+            <div>
+              <img
+                v-if="m.img_src"
+                :src="m.img_src"
+                width="500"
+                height="380"
+                alt=""
+                style="margin-top: 10px"
+              />
+            </div>
+          </div>
         </div>
         <div class="p-3">
           <span class="d-flex align-items-center mb-3 fs-5" style="color: red"
@@ -507,7 +523,13 @@ export default {
           startAt: "",
           endAt: "",
           addr: "",
-          image: "",
+          image: [
+            {
+              file_name: "파일을 선택하세요.",
+              file: "",
+              img_src: "",
+            },
+          ],
           recommendPlaceContents: "",
           itemList: [
             {
@@ -558,7 +580,13 @@ export default {
         startAt: "",
         endAt: "",
         addr: "",
-        image: "",
+        image: [
+          {
+            file_name: "파일을 선택하세요.",
+            file: "",
+            img_src: "",
+          },
+        ],
         recommendPlaceContents: "",
         itemList: [
           {
@@ -573,6 +601,13 @@ export default {
       this.planList[id].itemList.push({
         itemTitle: "",
         price: "",
+      });
+    },
+    addImageList(index) {
+      this.planList[index].image.push({
+        file_name: "파일을 선택하세요.",
+        file: "",
+        img_src: "",
       });
     },
 
@@ -615,6 +650,9 @@ export default {
       this.totalPrice -= Number(this.planList[index].itemList[id].price);
       this.planList[index].itemList.splice(id, 1);
     },
+    removeImg(index, id) {
+      this.planList[index].image.splice(id, 1);
+    },
     handleFileChange(e) {
       let file = e.target.files[0];
       let name = file.name;
@@ -628,6 +666,20 @@ export default {
       )
         this.thumbnail.img_src = URL.createObjectURL(file);
       else this.thumbnail.img_src = "";
+    },
+    handleImageChange(index, i) {
+      let file = event.target.files[0];
+      let name = file.name;
+      this.planList[index].image[i].file_name = file.name;
+      this.planList[index].image[i].file = file;
+      if (
+        name.endsWith(".jpg") ||
+        name.endsWith(".jpeg") ||
+        name.endsWith(".png") ||
+        name.endsWith(".gif")
+      )
+        this.planList[index].image[i].img_src = URL.createObjectURL(file);
+      else this.planList[index].image[i].img_src = "";
     },
     cancel() {
       this.$router.push("/schedule");

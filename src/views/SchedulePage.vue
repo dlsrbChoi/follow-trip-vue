@@ -15,7 +15,6 @@
               aria-label=".form-select-sm example"
               style="border: none"
               v-model="local"
-              @change="changeLocal"
             >
               <option value="">선택</option>
               <option value="수도권">수도권</option>
@@ -163,7 +162,7 @@
       </HashtagModal>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-3">
       <div class="col">
         <img
           src="../assets/images/koreaMap.png"
@@ -172,10 +171,12 @@
           style="border-radius: 15px"
         />
       </div>
+
       <div class="col h-100">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div v-for="(item, index) in scheduleList" :key="index" class="col">
             <div class="card h-100">
+              <!--              <div v-if="item.local === changeLocal">-->
               <router-link
                 :to="{
                   name: 'ScheduleDetailPage',
@@ -210,6 +211,7 @@
                   </h4>
                 </div>
               </router-link>
+              <!--              </div>-->
             </div>
           </div>
         </div>
@@ -246,6 +248,11 @@ export default {
       hashtagList: [],
       local: "",
       hashtagModal: false,
+
+      // 페이징
+      perPage: 9,
+      currentPage: 1,
+
       scheduleList: [
         {
           id: 0,
@@ -328,6 +335,42 @@ export default {
           rating: "5.0",
           price: "2,000",
         },
+        {
+          id: 9,
+          local: "제주도",
+          thumbnail: "",
+          hashtag: "맛집",
+          title: "제주도 여행",
+          rating: "5.0",
+          price: "2,000",
+        },
+        {
+          id: 10,
+          local: "제주도",
+          thumbnail: "",
+          hashtag: "맛집",
+          title: "제주도 여행",
+          rating: "5.0",
+          price: "2,000",
+        },
+        {
+          id: 11,
+          local: "제주도",
+          thumbnail: "",
+          hashtag: "맛집",
+          title: "제주도 여행",
+          rating: "5.0",
+          price: "2,000",
+        },
+        {
+          id: 12,
+          local: "제주도",
+          thumbnail: "",
+          hashtag: "맛집",
+          title: "제주도 여행",
+          rating: "5.0",
+          price: "2,000",
+        },
       ],
     };
   },
@@ -358,7 +401,20 @@ export default {
       this.closeModal();
     },
     getScheduleList() {},
-    changeLocal() {},
+  },
+  computed: {
+    rows() {
+      return this.scheduleList.length;
+    },
+    // changeLocal() {
+    //   if (this.local === "") {
+    //     return "";
+    //   }
+    //
+    //   if (this.local === "강원도") {
+    //     return "강원도";
+    //   }
+    // },
   },
 };
 </script>
