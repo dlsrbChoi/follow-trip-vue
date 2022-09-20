@@ -1,193 +1,200 @@
 <template>
-  <form @submit.prevent="registerUser" class="form">
-    <div class="container" style="width: 50%">
-      <div class="mt-5 fs-1 text-center">회원가입</div>
-      <div class="mt-2 mb-5 text-center">
-        이미 마켓트립의 회원이신가요?
-        <strong
-          ><router-link to="/login" style="text-decoration: none"
-            >로그인하러가기</router-link
-          ></strong
-        >
-      </div>
-
-      <div class="input-group mb-2">
-        <input
-          type="text"
-          class="form-control"
-          v-model="username"
-          :class="userEmailValidClass"
-          id="email"
-          placeholder="이메일"
-          aria-label="이메일"
-        />
-        <button
-          class="btn btn-secondary"
-          type="button"
-          id="duplicateCheck"
-          :class="isButtonDisabled"
-          :disabled="isButtonDisabled"
-        >
-          중복확인
-        </button>
-      </div>
-      <p class="validation-text">
-        <span class="warning" v-if="!isUserEmailValid">
-          이메일 형식으로 입력해 주세요.
-        </span>
-      </p>
-      <div class="input-group mb-2">
-        <input
-          type="password"
-          class="form-control"
-          v-model="password"
-          :class="passwordValidClass"
-          id="Password"
-          placeholder="비밀번호"
-        />
-      </div>
-      <p class="validation-text">
-        <span class="warning" v-if="!isPasswordValid">
-          비밀번호는 8자 이상이어야 합니다.
-        </span>
-      </p>
-      <div class="input-group mb-2">
-        <input
-          type="password"
-          class="form-control"
-          v-model="checkPw"
-          id="Password2"
-          placeholder="비밀번호확인"
-        />
-      </div>
-      <p class="validation-text">
-        <span class="warning" v-if="this.password !== this.checkPw">
-          비밀번호가 일치하지 않습니다.
-        </span>
-      </p>
-
-      <div class="fs-5 mt-3 mb-3 mx-2">추가정보 입력하기</div>
-
-      <div class="input-group mb-2">
-        <input
-          type="text"
-          class="form-control"
-          v-model="name"
-          id="name"
-          placeholder="이름"
-        />
-      </div>
-      <div class="input-group mb-2">
-        <input
-          type="text"
-          class="form-control"
-          v-model="tel"
-          id="phoneNumber"
-          placeholder="휴대전화번호"
-        />
-      </div>
-      <p class="validation-text">
-        <span class="normal"> 하이픈(-)없이 입력해주세요. </span>
-      </p>
-      <div class="input-group mb-2">
-        <input
-          type="text"
-          class="form-control"
-          v-model="addr"
-          id="address"
-          placeholder="주소"
-          aria-label="주소"
-        />
-        <button
-          class="btn btn-secondary"
-          type="button"
-          id="searchAddress"
-          @click="execDaumPostcode()"
-        >
-          주소검색
-        </button>
-      </div>
-      <div class="input-group mb-2">
-        <input
-          type="text"
-          class="form-control"
-          v-model="addrDetail"
-          id="detailAddress"
-          placeholder="상세주소"
-        />
-      </div>
-      <div class="input-group date">
-        <input
-          type="date"
-          class="form-control"
-          v-model="birth"
-          data-placeholder="생년월일"
-          required
-          aria-required="true"
-        />
-      </div>
-
-      <div>
-        <div class="form-check mt-5">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="allTerms"
-            v-model="isAllChecked"
-            @change="termsAllChecked"
-          />
-          <label class="form-check-label" for="allTerms">
-            <strong>아래 약관에 모두 동의합니다.</strong>
-          </label>
+  <div class="loginBg py-5">
+    <form @submit.prevent="registerUser" class="form">
+      <div
+        class="container px-5"
+        style="width: 50%; background-color: white; border-radius: 15px"
+      >
+        <div class="pt-5 fs-1 text-center">회원가입</div>
+        <div class="mt-2 mb-5 text-center text-black-50">
+          이미 마켓트립의 회원이신가요?
+          <strong
+            ><router-link
+              to="/login"
+              style="text-decoration: none; color: #e32066"
+              >로그인하러가기</router-link
+            ></strong
+          >
         </div>
-        <hr />
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="terms1"
-            v-model="privacyTerms"
-          />
-          <label class="form-check-label" for="terms1">
-            [필수] 개인정보 수집 및 활용
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="terms2"
-            v-model="userTerms"
-          />
-          <label class="form-check-label" for="terms2">
-            [필수] 회원 이용약관
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="terms3"
-            v-model="selectTerms"
-          />
-          <label class="form-check-label" for="terms3">
-            [선택] 개인정보 마케팅 활용 수신에 동의
-          </label>
-        </div>
-      </div>
 
-      <div class="d-flex justify-content-end gap-1 mt-5 mb-5">
-        <button type="button" class="btn btn-outline-dark">취소</button>
-        <button type="button" class="btn btn-secondary" @click="signup">
-          가입하기
-        </button>
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="username"
+            :class="userEmailValidClass"
+            id="email"
+            placeholder="이메일"
+            aria-label="이메일"
+          />
+          <button
+            class="btn btn-secondary"
+            type="button"
+            id="duplicateCheck"
+            :class="isButtonDisabled"
+            :disabled="isButtonDisabled"
+          >
+            중복확인
+          </button>
+        </div>
+        <p class="validation-text">
+          <span class="warning" v-if="!isUserEmailValid">
+            이메일 형식으로 입력해 주세요.
+          </span>
+        </p>
+        <div class="input-group mb-2">
+          <input
+            type="password"
+            class="form-control"
+            v-model="password"
+            :class="passwordValidClass"
+            id="Password"
+            placeholder="비밀번호"
+          />
+        </div>
+        <p class="validation-text">
+          <span class="warning" v-if="!isPasswordValid">
+            비밀번호는 8자 이상이어야 합니다.
+          </span>
+        </p>
+        <div class="input-group mb-2">
+          <input
+            type="password"
+            class="form-control"
+            v-model="checkPw"
+            id="Password2"
+            placeholder="비밀번호확인"
+          />
+        </div>
+        <p class="validation-text">
+          <span class="warning" v-if="this.password !== this.checkPw">
+            비밀번호가 일치하지 않습니다.
+          </span>
+        </p>
+
+        <div class="fs-5 mt-3 mb-3 mx-2">추가정보 입력하기</div>
+
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="name"
+            id="name"
+            placeholder="이름"
+          />
+        </div>
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="tel"
+            id="phoneNumber"
+            placeholder="휴대전화번호"
+          />
+        </div>
+        <p class="validation-text">
+          <span class="normal"> 하이픈(-)없이 입력해주세요. </span>
+        </p>
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="addr"
+            id="address"
+            placeholder="주소"
+            aria-label="주소"
+          />
+          <button
+            class="btn btn-secondary"
+            type="button"
+            id="searchAddress"
+            @click="execDaumPostcode()"
+          >
+            주소검색
+          </button>
+        </div>
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="addrDetail"
+            id="detailAddress"
+            placeholder="상세주소"
+          />
+        </div>
+        <div class="input-group date">
+          <input
+            type="date"
+            class="form-control"
+            v-model="birth"
+            data-placeholder="생년월일"
+            required
+            aria-required="true"
+          />
+        </div>
+
+        <div>
+          <div class="form-check mt-5">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="allTerms"
+              v-model="isAllChecked"
+              @change="termsAllChecked"
+            />
+            <label class="form-check-label" for="allTerms">
+              <strong>아래 약관에 모두 동의합니다.</strong>
+            </label>
+          </div>
+          <hr />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="terms1"
+              v-model="privacyTerms"
+            />
+            <label class="form-check-label" for="terms1">
+              [필수] 개인정보 수집 및 활용
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="terms2"
+              v-model="userTerms"
+            />
+            <label class="form-check-label" for="terms2">
+              [필수] 회원 이용약관
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="terms3"
+              v-model="selectTerms"
+            />
+            <label class="form-check-label" for="terms3">
+              [선택] 개인정보 마케팅 활용 수신에 동의
+            </label>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-1 mt-5 pb-5">
+          <button type="button" class="btn btn-outline-dark">취소</button>
+          <button type="button" class="btn btn-secondary" @click="signup">
+            가입하기
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>

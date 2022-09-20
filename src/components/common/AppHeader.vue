@@ -48,7 +48,13 @@
             </button></router-link
           >
           <router-link to="/login"
-            ><button type="button" class="btn btn-primary me-2">로그인</button>
+            ><button
+              type="button"
+              class="btn btn-primary me-2 border-0"
+              style="background-color: #e32066"
+            >
+              로그인
+            </button>
           </router-link>
         </div>
       </template>

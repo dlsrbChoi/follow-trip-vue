@@ -135,3 +135,6 @@ a.router-link-exact-active {
     color: #333333;
     font-size: 12px;
 }
+.loginBg {
+    background-image: url(../assets/images/Rectangle6.png);
+}
