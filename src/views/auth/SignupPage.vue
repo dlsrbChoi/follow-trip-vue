@@ -3,9 +3,10 @@
     <form @submit.prevent="registerUser" class="form">
       <div
         class="container px-5"
-        style="width: 50%; background-color: white; border-radius: 15px"
+        style="width: 45%; background-color: white; border-radius: 15px"
       >
         <div class="pt-5 fs-1 text-center">회원가입</div>
+
         <div class="mt-2 mb-5 text-center text-black-50">
           이미 마켓트립의 회원이신가요?
           <strong

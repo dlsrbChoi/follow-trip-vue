@@ -1,40 +1,32 @@
 <template>
   <div class="container">
     <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2"
     >
+      <div></div>
+      <div></div>
       <router-link
         to="/main"
-        class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+        class="d-flex align-items-center col-md-2 mb-md-0"
       >
-        <i class="fa-solid fa-plane"></i>
-        <span class="ms-3">마켓트립</span>
+        <img src="@/assets/images/Frame2.png" alt="..." />
       </router-link>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <ul class="nav col-12 col-md-auto justify-content-center mb-md-0">
         <li>
           <router-link to="/main" class="nav-link px-2 link-secondary"
-            >메인페이지</router-link
+            >일정표 거래</router-link
           >
         </li>
         <li>
-          <router-link to="/schedule" class="nav-link px-2 link-dark"
-            >일정표 거래</router-link
+          <router-link to="/schedule/create" class="nav-link px-2 link-dark"
+            >일정표 만들기</router-link
           >
         </li>
       </ul>
 
-      <div class="col"></div>
-
-      <form class="col-2 mb-3 mb-lg-0">
-        <input
-          type="search"
-          class="form-control"
-          placeholder="여행지를 검색해보세요."
-          aria-label="Search"
-          @keydown.enter="search"
-        />
-      </form>
+      <div></div>
+      <div></div>
 
       <template v-if="!isLoggedIn">
         <div class="col-md-3 text-end">
@@ -71,6 +63,8 @@
           </a>
         </div>
       </template>
+      <div></div>
+      <div></div>
     </header>
   </div>
 </template>
