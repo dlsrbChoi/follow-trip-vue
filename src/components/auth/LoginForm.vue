@@ -1,16 +1,24 @@
 <template>
-  <div class="pt-5 pb-5" style="background-color: #ffffff; z-index: -1">
+  <div class="loginBg pt-5" style="height: 93vh">
     <div
-      class="container pt-3 pb-3 px-3 px-5"
-      style="width: 40%; background-color: white; border-radius: 10px"
+      class="container pt-3 pb-3 px-3 px-5 mt-5"
+      style="
+        width: 30%;
+        height: 75vh;
+        background-color: white;
+        border-radius: 15px;
+      "
     >
       <div class="mt-3 fs-1 text-center">로그인</div>
+      <div class="mt-4 mb-5 fs-5 text-center">
+        <img src="@/assets/images/Frame2.png" alt="..." />
+      </div>
 
-      <div class="mt-5 mb-2 ms-1 text-left" style="color: gray">
+      <div class="mt-5 mb-2 pt-5 ms-1 text-left" style="color: gray">
         마켓트립 계정 로그인
       </div>
       <form @submit.prevent="submitForm" class="form">
-        <div class="input-group mb-2">
+        <div class="input-group input-group-lg mb-2">
           <input
             type="text"
             class="form-control"
@@ -26,7 +34,7 @@
             이메일 형식으로 입력해 주세요.
           </span>
         </p>
-        <div class="input-group mb-2">
+        <div class="input-group input-group-lg mb-2">
           <input
             type="password"
             class="form-control"
@@ -39,8 +47,8 @@
           <button
             :disabled="!isUserEmailValid || !password"
             type="submit"
-            class="btn btn-primary"
-            style="width: 100%"
+            class="btn btn-lg btn-primary border-0"
+            style="width: 100%; background-color: #e32066"
             :class="!isUserEmailValid || !password ? 'disabled' : null"
           >
             로그인
@@ -48,29 +56,16 @@
         </div>
       </form>
       <div class="mt-2 mb-5 fs-6 text-center" style="color: gray">
-        아직 마켓트립의 회원이 아니신가요?
-        <p>
+        <span class="me-3">아직 마켓트립의 회원이 아니신가요?</span>
+        <span>
           <strong
-            ><router-link to="/signup" style="text-decoration: none"
+            ><router-link
+              to="/signup"
+              style="text-decoration: none; color: #e32066"
               >회원가입하러가기</router-link
             ></strong
           >
-        </p>
-      </div>
-
-      <div class="mt-5 mb-2 ms-3 text-left" style="color: gray">
-        간편 로그인
-      </div>
-
-      <div class="mb-5">
-        <button
-          type="button"
-          class="btn btn-warning"
-          @click="kakaoLogin()"
-          style="width: 100%"
-        >
-          카카오톡 간편 로그인
-        </button>
+        </span>
       </div>
     </div>
   </div>
@@ -78,9 +73,8 @@
 
 <script>
 import { validateEmail } from "@/utils/validation";
-
 export default {
-  name: "LoginForm",
+  name: "LoginPage",
   data() {
     return {
       username: "",
