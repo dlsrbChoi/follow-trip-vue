@@ -5,7 +5,6 @@
       style="width: 40%; background-color: white; border-radius: 10px"
     >
       <div class="mt-3 fs-1 text-center">로그인</div>
-      <div class="mt-4 mb-5 fs-5 text-center">마켓트립</div>
 
       <div class="mt-5 mb-2 ms-1 text-left" style="color: gray">
         마켓트립 계정 로그인

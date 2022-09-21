@@ -292,7 +292,7 @@
               class="form-select form-select-sm col"
               aria-label=".form-select-sm example"
               style="border: none"
-              v-model="local"
+              v-model="region"
             >
               <option value="">선택</option>
               <option value="수도권">수도권</option>
@@ -335,7 +335,7 @@
       </button>
 
       <button
-        v-for="(item, index) in hashtagList"
+        v-for="(item, index) in hashtags"
         :key="index"
         type="button"
         class="btn btn-primary btn-sm me-1 ms-1"
@@ -411,7 +411,7 @@
         <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
         <div>
           <button
-            v-for="(item, index) in hashtagList"
+            v-for="(item, index) in hashtags"
             :key="index"
             type="button"
             class="btn btn-primary btn-sm me-1 ms-1"
@@ -443,7 +443,7 @@
     <div class="row mt-3">
       <div class="col h-100">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div v-for="(item, index) in scheduleList" :key="index" class="col">
+          <div v-for="(item, index) in schedules" :key="index" class="col">
             <div class="card h-100">
               <!--              <div v-if="item.local === changeLocal">-->
               <router-link
@@ -470,7 +470,7 @@
                     class="card-title"
                     style="color: #333333; font-size: 15px"
                   >
-                    {{ item.title }}
+                    {{ item.name }}
                   </div>
                   <div style="color: #e32066">
                     <strong>⭐ {{ item.rating }}</strong>
@@ -515,93 +515,93 @@ export default {
   components: { HashtagModal },
   data() {
     return {
-      hashtagList: [],
-      local: "",
+      hashtags: [],
+      region: "",
       hashtagModal: false,
 
       // 페이징
       perPage: 9,
       currentPage: 1,
 
-      scheduleList: [
+      schedules: [
         {
           id: "0",
-          local: "강원도",
+          region: "강원도",
           thumbnail: "",
           hashtag: "데이트",
-          title: "강원도 여행",
+          name: "강원도 여행",
           rating: "4.8",
           price: "2,000",
         },
         {
           id: "1",
-          local: "충청북도",
+          region: "충청북도",
           thumbnail: "",
           hashtag: "맛집",
-          title: "충북 여행",
+          name: "충북 여행",
           rating: "4.7",
           price: "2,000",
         },
         {
           id: "2",
-          local: "충청남도",
+          region: "충청남도",
           thumbnail: "",
           hashtag: "놀거리",
-          title: "충남 여행",
+          name: "충남 여행",
           rating: "4.6",
           price: "2,000",
         },
         {
           id: "3",
-          local: "수도권",
+          region: "수도권",
           thumbnail: "",
           hashtag: "데이트",
-          title: "수도권 여행",
+          name: "수도권 여행",
           rating: "4.5",
           price: "2,000",
         },
         {
           id: "4",
-          local: "경상북도",
+          region: "경상북도",
           thumbnail: "",
           hashtag: "엑티비티",
-          title: "경북 여행",
+          name: "경북 여행",
           rating: "4.3",
           price: "2,000",
         },
         {
           id: "5",
-          local: "전라북도",
+          region: "전라북도",
           thumbnail: "",
           hashtag: "기차",
-          title: "전북 여행",
+          name: "전북 여행",
           rating: "4.2",
           price: "2,000",
         },
         {
           id: "6",
-          local: "전라남도",
+          region: "전라남도",
           thumbnail: "",
           hashtag: "자동차",
-          title: "전남 여행",
+          name: "전남 여행",
           rating: "4.1",
           price: "2,000",
         },
         {
           id: "7",
-          local: "경상남도",
+          region: "경상남도",
           thumbnail: "",
           hashtag: "여행",
-          title: "경남 여행",
+          name: "경남 여행",
           rating: "3.8",
           price: "2,000",
         },
         {
           id: "8",
-          local: "제주도",
+          region: "제주도",
           thumbnail: "",
           hashtag: "맛집",
-          title: "제주도 여행",
+          name: "제주도 여행",
           rating: "5.0",
           price: "2,000",
         },
@@ -613,14 +613,14 @@ export default {
   },
   methods: {
     addHashtag(value) {
-      if (this.hashtagList.includes(value)) {
+      if (this.hashtags.includes(value)) {
         return false;
       } else {
-        this.hashtagList.push(value);
+        this.hashtags.push(value);
       }
     },
     removeHashtagItem(index) {
-      this.hashtagList.splice(index, 1);
+      this.hashtags.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -629,7 +629,7 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtagList = [];
+      this.hashtags = [];
     },
     doSend() {
       this.closeModal();
@@ -638,7 +638,7 @@ export default {
   },
   computed: {
     rows() {
-      return this.scheduleList.length;
+      return this.schedules.length;
     },
     // changeLocal() {
     //   if (this.local === "") {

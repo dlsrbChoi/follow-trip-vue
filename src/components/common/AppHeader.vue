@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2"
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3"
     >
       <div></div>
       <div></div>
@@ -81,9 +81,6 @@ export default {
     logoutUser() {
       this.$store.commit("LOGOUT");
       this.$router.push("/");
-    },
-    search() {
-      console.log("search");
     },
   },
 };

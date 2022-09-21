@@ -12,7 +12,7 @@ function fetchSchedule(scheduleId) {
 
 // 일정표 생성
 function createSchedule(scheduleData) {
-  return schedules.post("/", scheduleData);
+  return schedules.post("/api/v1/schedule/insert", scheduleData);
 }
 
 export { fetchSchedules, fetchSchedule, createSchedule };
