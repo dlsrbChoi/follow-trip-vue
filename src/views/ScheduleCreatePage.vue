@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
-    <div class="container" style="width: 65%">
+    <div class="container">
       <div class="mt-5 border-bottom pb-2">
         <span class="fs-4"><strong>일정표 만들기</strong></span>
         <span class="ms-3" style="color: red">*</span
@@ -240,7 +240,7 @@
             id="flexCheckDefault"
             v-model="item.checkedPlan"
           />
-          <div class="col-2 fw-bold border-start">순서</div>
+          <div class="col-1 fw-bold border-start">순서</div>
           <div class="col-2 fw-bold border-start">카테고리</div>
           <div class="col-4 fw-bold border-start">장소명</div>
           <div class="col fw-bold border-start">추천시간대</div>
@@ -255,7 +255,7 @@
             >
               X
             </button>
-            <div class="col-2 border-start">
+            <div class="col-1 ps-3 border-start">
               <i
                 class="fa-solid fa-chevron-up border me-2 p-2 hover"
                 @click="planIdUp(index)"

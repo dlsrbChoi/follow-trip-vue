@@ -31,11 +31,6 @@ const router = new VueRouter({
       component: () => import("@/views/MainPage"),
     },
     {
-      path: "/schedule",
-      name: "SchedulePage",
-      component: () => import("@/views/SchedulePage"),
-    },
-    {
       path: "/schedule/detail/:no",
       name: "ScheduleDetailPage",
       component: () => import("@/views/ScheduleDetailPage"),

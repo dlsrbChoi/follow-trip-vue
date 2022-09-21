@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="@/assets/images/Component21.png" class="card-img" alt="..." />
+    <img src="@/assets/images/mainBanner.png" class="card-img" alt="..." />
     <div class="container">
       <div class="fs-3 mt-5 mb-3 w-75 fw-bold mx-auto" style="color: #e32066">
         #가장 많이 구매한 일정표
