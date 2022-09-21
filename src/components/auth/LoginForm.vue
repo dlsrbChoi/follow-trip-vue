@@ -81,7 +81,7 @@
 import { validateEmail } from "@/utils/validation";
 
 export default {
-  name: "LoginPage",
+  name: "LoginForm",
   data() {
     return {
       username: "",

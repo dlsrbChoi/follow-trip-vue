@@ -16,4 +16,4 @@ function createInstanceWithAuth(url) {
 }
 
 export const instance = createInstance();
-export const schedule = createInstanceWithAuth("schedule");
+export const schedules = createInstanceWithAuth("schedules");

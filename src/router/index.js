@@ -36,12 +36,12 @@ const router = new VueRouter({
       component: () => import("@/views/SchedulePage"),
     },
     {
-      path: "/schedule/detail/:no",
+      path: "/schedule/detail/:id",
       name: "ScheduleDetailPage",
       component: () => import("@/views/ScheduleDetailPage"),
     },
     {
-      path: "/schedule/detail/purchase/:no",
+      path: "/schedule/detail/purchase/:id",
       name: "AfterBuySchedulePage",
       component: () => import("@/views/AfterBuySchedulePage"),
     },
