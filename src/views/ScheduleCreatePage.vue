@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
-    <div class="container">
+    <div class="container" style="width: 75%">
       <form class="form" @submit.prevent="submitForm">
         <div class="mt-5 border-bottom pb-2">
           <span class="fs-4"><strong>일정표 만들기</strong></span>
@@ -135,7 +135,7 @@
                 class="btn btn-primary btn-sm me-1 ms-1"
                 @click="removeHashtagItem(index)"
               >
-                #{{ item }} X
+                #{{ item }} ⨉
               </button>
             </div>
             <!-- /default -->
@@ -250,7 +250,7 @@
             <div class="hstack gap-3 mb-3 pb-3 text-center border-bottom">
               <button
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn border rounded px-2 py-1"
                 style="margin-left: -5px; margin-right: -5px"
                 @click="removePlan(index)"
               >
@@ -258,11 +258,11 @@
               </button>
               <div class="col-1 ps-3 border-start">
                 <i
-                  class="fa-solid fa-chevron-up border me-2 p-2 hover"
+                  class="fa-solid fa-chevron-up border me-2 p-1 hover"
                   @click="planIdUp(index)"
                 ></i>
                 <i
-                  class="fa-solid fa-chevron-down border p-2"
+                  class="fa-solid fa-chevron-down border p-1"
                   @click="planIdDown(index)"
                 ></i>
               </div>
@@ -757,7 +757,7 @@ export default {
       else this.plans[index].images[i].img_src = "";
     },
     cancel() {
-      this.$router.push("/schedule");
+      this.$router.push("/main");
     },
   },
 };

@@ -436,7 +436,7 @@
           </div>
         </div>
         <div class="mt-3 mb-5 row">
-          <div class="col">
+          <div class="col-8">
             <button
               type="button"
               class="btn btn-secondary btn-sm me-2"
@@ -448,7 +448,7 @@
 
             <button
               type="button"
-              class="btn btn-light btn-sm me-5"
+              class="btn btn-light btn-sm me-3"
               @click="resetHashtagList"
             >
               초기화
@@ -458,11 +458,11 @@
               v-for="(item, index) in hashtags"
               :key="index"
               type="button"
-              class="btn btn-primary btn-sm me-1 ms-1"
+              class="btn btn-primary btn-sm ms-1"
               style="background-color: #4a80ff; border: none"
               @click="removeHashtagItem(index)"
             >
-              #{{ item }} X
+              #{{ item }} ⨉
             </button>
 
             <!-- 컴포넌트 MyModal -->
@@ -541,7 +541,7 @@
               <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
               <div>
                 <button
-                  v-for="(item, index) in hashtagList"
+                  v-for="(item, index) in hashtags"
                   :key="index"
                   type="button"
                   class="btn btn-primary btn-sm me-1 ms-1"
@@ -570,10 +570,10 @@
               <!-- /footer -->
             </HashtagModal>
           </div>
-          <div class="col">
+          <div class="col-4">
             <input
               type="text"
-              class="form-control w-50 ms-auto"
+              class="form-control ms-auto"
               id="search"
               placeholder="🔍여행지를 검색해보세요."
             />
@@ -754,14 +754,14 @@ export default {
   },
   methods: {
     addHashtag(value) {
-      if (this.hashtagList.includes(value)) {
+      if (this.hashtags.includes(value)) {
         return false;
       } else {
-        this.hashtagList.push(value);
+        this.hashtags.push(value);
       }
     },
     removeHashtagItem(index) {
-      this.hashtagList.splice(index, 1);
+      this.hashtags.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -770,7 +770,7 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtagList = [];
+      this.hashtags = [];
     },
     doSend() {
       this.closeModal();
