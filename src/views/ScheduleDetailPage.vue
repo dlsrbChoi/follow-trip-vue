@@ -7,6 +7,13 @@
         <button
           type="button"
           class="btn btn-secondary btn-sm mx-1"
+          style="background-color: #4a80ff; border: none"
+        >
+          #{{ this.region }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mx-1"
           style="background-color: #e32066; border: none"
           v-for="(item, index) in hashtags"
           :key="index"
@@ -237,7 +244,8 @@ export default {
   name: "ScheduleDetailPage",
   data() {
     return {
-      hashtags: ["강원도", "데이트", "자동차"],
+      region: "강원도",
+      hashtags: ["데이트", "자동차"],
       name: "",
       description: "",
 
