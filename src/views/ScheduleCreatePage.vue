@@ -135,7 +135,7 @@
                 class="btn btn-primary btn-sm me-1 ms-1"
                 @click="removeHashtagItem(index)"
               >
-                #{{ item }} X
+                #{{ item }} ⨉
               </button>
             </div>
             <!-- /default -->
@@ -250,7 +250,7 @@
             <div class="hstack gap-3 mb-3 pb-3 text-center border-bottom">
               <button
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn border rounded px-2 py-1"
                 style="margin-left: -5px; margin-right: -5px"
                 @click="removePlan(index)"
               >
@@ -729,7 +729,7 @@ export default {
       else this.plans[index].images[i].img_src = "";
     },
     cancel() {
-      this.$router.push("/schedule");
+      this.$router.push("/main");
     },
     sumItemPrice(index, i) {
       this.plans[index].sumItemPrice += Number(
