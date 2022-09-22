@@ -7,8 +7,8 @@ function registerUser(data) {
 }
 
 // 로그인 API
-function loginUser(data) {
-  return instance.post("/login", data);
+function loginUser(userData) {
+  return instance.post("/login", userData);
 }
 
 export { registerUser, loginUser };

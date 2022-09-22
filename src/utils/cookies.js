@@ -6,6 +6,13 @@ function saveUserToCookie(value) {
   document.cookie = `member_user=${value}`;
 }
 
+// function getAuthFromCookie() {
+//   return document.cookie.replace(
+//     /(?:(?:^|.*;\s*)member_auth\s*=\s*([^;]*).*$)|^.*$/,
+//     "$1"
+//   );
+// }
+
 function getAuthFromCookie() {
   return document.cookie.replace(
     /(?:(?:^|.*;\s*)member_auth\s*=\s*([^;]*).*$)|^.*$/,

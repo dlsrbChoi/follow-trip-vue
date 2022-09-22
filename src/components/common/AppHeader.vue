@@ -53,7 +53,7 @@
 
       <template v-else>
         <div class="col-md-3 text-end">
-          <span style="margin-right: 10px">슈퍼관리자님</span>
+          <span style="margin-right: 10px">{{ username }} 님</span>
           <a
             href="javascript:"
             @click="logoutUser"
@@ -74,6 +74,11 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "AppHeader",
+  data() {
+    return {
+      username: "",
+    };
+  },
   computed: {
     ...mapGetters(["isLoggedIn"]),
   },

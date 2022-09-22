@@ -4,6 +4,10 @@ import { setInterceptors } from "./common/interceptors";
 function createInstance() {
   return axios.create({
     baseURL: process.env.VUE_APP_API_URL,
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      Authorization: "*",
+    },
   });
 }
 
