@@ -26,6 +26,11 @@ const router = new VueRouter({
       component: () => import("@/views/auth/SignupPage"),
     },
     {
+      path: "/signupFinish",
+      name: "SignupFinishPage",
+      component: () => import("@/views/auth/SignupFinishPage"),
+    },
+    {
       path: "/main",
       name: "MainPage",
       component: () => import("@/views/MainPage"),

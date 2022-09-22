@@ -330,7 +330,11 @@ export default {
       }
     },
     signup() {
-      if (this.filter() === false) return false;
+      if (this.filter() === false) {
+        return false;
+      } else {
+        this.$router.push("/signupFinish");
+      }
     },
     filter() {
       if (!this.username || this.username.trim() === "") {
