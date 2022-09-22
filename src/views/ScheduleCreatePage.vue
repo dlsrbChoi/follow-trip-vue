@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
-    <div class="container">
+  <div class="container" style="width: 65%">
+    <form class="form" @submit.prevent="submitForm">
       <div class="mt-5 border-bottom pb-2">
         <span class="fs-4"><strong>일정표 만들기</strong></span>
         <span class="ms-3" style="color: red">*</span
@@ -13,19 +12,17 @@
           class="form-control"
           placeholder="일정표명을 입력해주세요."
           aria-label="Recipient's username with two button addons"
-          v-model="title"
+          v-model="name"
         />
         <select
           class="btn btn-primary btn-sm m-1 p-1"
           aria-hidden="true"
           style="
-            background-color: #e32066;
             border-radius: 5px;
             border: none;
             position: absolute;
             top: 0;
             right: 0;
-            z-index: 10;
           "
           v-model="region"
         >
@@ -215,12 +212,7 @@
           >
             선택삭제
           </button>
-          <button
-            type="button"
-            class="btn btn-danger border-0"
-            style="background-color: #e32066"
-            @click="addPlan()"
-          >
+          <button type="button" class="btn btn-danger" @click="addPlan()">
             일정 추가하기 +
           </button>
         </div>
@@ -240,7 +232,7 @@
             id="flexCheckDefault"
             v-model="item.checkedPlan"
           />
-          <div class="col-1 fw-bold border-start">순서</div>
+          <div class="col-2 fw-bold border-start">순서</div>
           <div class="col-2 fw-bold border-start">카테고리</div>
           <div class="col-4 fw-bold border-start">장소명</div>
           <div class="col fw-bold border-start">추천시간대</div>
@@ -255,7 +247,7 @@
             >
               X
             </button>
-            <div class="col-1 ps-3 border-start">
+            <div class="col-2 border-start">
               <i
                 class="fa-solid fa-chevron-up border me-2 p-2 hover"
                 @click="planIdUp(index)"
@@ -463,13 +455,13 @@
       <div class="row justify-content-around border-bottom fs-3 pb-3 pt-3">
         <div class="col"><strong>일정 예상금액</strong></div>
         <div class="col text-end">
-          <span style="color: #e32066">{{ totalPrice }}</span>
+          <span style="color: red">{{ totalPrice }}</span>
           <span>원</span>
         </div>
       </div>
 
       <div class="row pt-3 border-top mt-2 mb-4">
-        <span class="d-flex align-items-center col fs-3" style="color: #e32066"
+        <span class="d-flex align-items-center col fs-3" style="color: red"
           >*
           <span class="ms-2" style="color: black">내 일정 추천내용</span></span
         >
@@ -504,25 +496,23 @@
         <button type="button" class="btn btn-outline-dark" @click="cancel">
           취소
         </button>
-        <button
-          type="button"
-          class="btn btn-danger border-0"
-          style="background-color: #e32066"
-        >
-          저장
-        </button>
+        <button type="submit" class="btn btn-danger">저장</button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
 import HashtagModal from "@/components/modals/HashtagModal";
 import TextEditor from "@/components/util/TextEditor";
+import { createSchedule } from "@/api/schedules";
 
 export default {
   name: "ScheduleCreatePage",
   components: { HashtagModal, TextEditor },
+  created() {
+    this.plans[0].planOrder = "1";
+  },
   data() {
     return {
       name: "",
@@ -570,6 +560,20 @@ export default {
     };
   },
   methods: {
+    async submitForm() {
+      try {
+        const response = await createSchedule({
+          name: this.name,
+          region: this.region,
+          description: this.description,
+          plans: this.plans,
+        });
+        await this.$router.push("/main");
+        console.log(response);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    },
     addHashtag(value) {
       if (this.hashtags.includes(value)) {
         return false;
@@ -595,7 +599,7 @@ export default {
     addPlan() {
       this.plans.push({
         checkedPlan: false,
-        planOrder: "",
+        planOrder: `${this.plans.length + 1}`,
         category: "",
         name: "",
         startAt: "",
@@ -617,6 +621,7 @@ export default {
         ],
         sumItemPrice: 0,
       });
+      console.log(this.plans.length);
     },
     addPriceList(id) {
       this.plans[id].items.push({
