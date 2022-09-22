@@ -100,7 +100,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="addr"
+            v-model="address"
             id="address"
             placeholder="주소"
             aria-label="주소"

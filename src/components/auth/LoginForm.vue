@@ -44,12 +44,19 @@
           />
         </div>
         <div>
+          <!--          <button-->
+          <!--            :disabled="!isUserEmailValid || !password"-->
+          <!--            type="submit"-->
+          <!--            class="btn btn-lg btn-primary border-0"-->
+          <!--            style="width: 100%; background-color: #e32066"-->
+          <!--            :class="!isUserEmailValid || !password ? 'disabled' : null"-->
+          <!--          >-->
+          <!--            로그인-->
+          <!--          </button>-->
           <button
-            :disabled="!isUserEmailValid || !password"
             type="submit"
             class="btn btn-lg btn-primary border-0"
             style="width: 100%; background-color: #e32066"
-            :class="!isUserEmailValid || !password ? 'disabled' : null"
           >
             로그인
           </button>
