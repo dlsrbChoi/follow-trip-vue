@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
-    <div class="container">
+    <div class="container" style="width: 75%">
       <form class="form" @submit.prevent="submitForm">
         <div class="mt-5 border-bottom pb-2">
           <span class="fs-4"><strong>일정표 만들기</strong></span>
@@ -258,11 +258,11 @@
               </button>
               <div class="col-1 ps-3 border-start">
                 <i
-                  class="fa-solid fa-chevron-up border me-2 p-2 hover"
+                  class="fa-solid fa-chevron-up border me-2 p-1 hover"
                   @click="planIdUp(index)"
                 ></i>
                 <i
-                  class="fa-solid fa-chevron-down border p-2"
+                  class="fa-solid fa-chevron-down border p-1"
                   @click="planIdDown(index)"
                 ></i>
               </div>
