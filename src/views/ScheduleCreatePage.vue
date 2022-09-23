@@ -53,7 +53,7 @@
           </button>
 
           <button
-            v-for="(item, index) in hashtags"
+            v-for="(item, index) in hashes"
             :key="index"
             type="button"
             class="btn btn-primary btn-sm me-1 ms-1"
@@ -129,7 +129,7 @@
             <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
             <div>
               <button
-                v-for="(item, index) in hashtags"
+                v-for="(item, index) in hashes"
                 :key="index"
                 type="button"
                 class="btn btn-primary btn-sm me-1 ms-1"
@@ -407,13 +407,13 @@
                     >* <span class="ms-2" style="color: black">가격</span></span
                   >
                 </div>
-                <div class="row mb-1" v-for="(n, i) in item.items" :key="i">
+                <div class="row mb-1">
                   <div class="input-group col">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="항목명을 입력해주세요."
-                      v-model="n.name"
+                      v-model="inputName"
                     />
                   </div>
                   <div class="input-group col">
@@ -422,21 +422,13 @@
                       class="form-control"
                       style="border-right: none; text-align: right"
                       placeholder="가격을 입력해주세요."
-                      v-model="n.price"
-                      @change="sumItemPrice(index, i), sumTotalPrice(index, i)"
+                      v-model="inputPrice"
                     />
                     <span
                       class="input-group-text"
                       style="background-color: white; border-left: none"
                       >원</span
                     >
-                    <button
-                      type="button"
-                      class="btn btn-secondary btn-sm"
-                      @click="removePrice(index, i)"
-                    >
-                      X
-                    </button>
                   </div>
                 </div>
                 <div class="row ps-3 pe-3">
@@ -453,9 +445,48 @@
                     가격 추가 +
                   </button>
                 </div>
+                <div
+                  class="row mb-1 mt-2"
+                  v-for="(n, i) in item.items"
+                  :key="i"
+                >
+                  <div class="input-group col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder=""
+                      v-model="n.name"
+                      disabled
+                    />
+                  </div>
+                  <div class="input-group col">
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="border-right: none; text-align: right"
+                      placeholder="가격을 입력해주세요."
+                      v-model="n.price"
+                      disabled
+                    />
+                    <span
+                      class="input-group-text"
+                      style="background-color: white; border-left: none"
+                      >원</span
+                    >
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      @click="removePrice(index, i)"
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
                 <div class="d-flex justify-content-end mt-3 fs-3">
                   <span class="me-5">총액</span>
-                  <span style="color: #e32066">{{ item.sumItemPrice }}</span>
+                  <span style="color: #e32066">{{
+                    item.sumItemPrice | makeComma
+                  }}</span>
                   <span>원</span>
                 </div>
               </div>
@@ -467,7 +498,7 @@
         <div class="row justify-content-around border-bottom fs-3 pb-3 pt-3">
           <div class="col"><strong>일정 예상금액</strong></div>
           <div class="col text-end">
-            <span style="color: #e32066">{{ totalPrice }}</span>
+            <span style="color: #e32066">{{ totalPrice | makeComma }}</span>
             <span>원</span>
           </div>
         </div>
@@ -539,13 +570,14 @@ export default {
       name: "",
       region: "",
       hashtag: "",
-      hashtags: [],
+      hashes: [],
       hashtagModal: false,
       thumbnail: {
         file_name: "파일을 선택하세요.",
         file: "",
         img_src: "",
       }, // 썸네일 파일
+      images: [],
       plans: [
         {
           checkedPlan: false,
@@ -555,6 +587,7 @@ export default {
           startAt: "",
           endAt: "",
           address: "",
+          imageCnt: 0,
           images: [
             {
               file_name: "파일을 선택하세요.",
@@ -563,15 +596,12 @@ export default {
             },
           ],
           description: "",
-          items: [
-            {
-              name: "",
-              price: 0,
-            },
-          ],
+          items: [],
           sumItemPrice: 0,
         },
       ],
+      inputName: "",
+      inputPrice: 0,
 
       totalPrice: 0,
       description: "",
@@ -583,27 +613,47 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await createSchedule({
-          name: this.name,
-          region: this.region,
-          description: this.description,
-          plans: this.plans,
-        });
-        await this.$router.push("/main");
-        console.log(response);
+        this.setImgPrams();
+        const reqString = this.setParam();
+        const formData = new FormData();
+        formData.append("reqString", reqString);
+        formData.append("thumbnail", this.thumbnail.file);
+        formData.append("images", this.images);
+        console.log(formData);
+        await createSchedule(formData);
+        // await this.$router.push("/main");
       } catch (error) {
-        console.log(error.response.data.message);
+        console.log(error);
       }
     },
+    setImgPrams() {
+      const plans = this.plans;
+      plans.forEach((plan) => {
+        plan.images.forEach((image) => {
+          this.images.push(image.file);
+          plan.imageCnt += 1;
+        });
+      });
+    },
+    setParam() {
+      const data = {
+        name: this.name,
+        region: this.region,
+        hashes: this.hashes,
+        plans: this.plans,
+        description: this.description,
+      };
+      return JSON.stringify(data);
+    },
     addHashtag(value) {
-      if (this.hashtags.includes(value)) {
+      if (this.hashes.includes(value)) {
         return false;
       } else {
-        this.hashtags.push(value);
+        this.hashes.push(value);
       }
     },
     removeHashtagItem(index) {
-      this.hashtags.splice(index, 1);
+      this.hashes.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -612,7 +662,7 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtags = [];
+      this.hashes = [];
     },
     doSend() {
       this.closeModal();
@@ -626,6 +676,7 @@ export default {
         startAt: "",
         endAt: "",
         address: "",
+        imageCnt: 0,
         images: [
           {
             file_name: "파일을 선택하세요.",
@@ -634,21 +685,21 @@ export default {
           },
         ],
         description: "",
-        items: [
-          {
-            name: "",
-            price: 0,
-          },
-        ],
+        items: [],
         sumItemPrice: 0,
       });
       console.log(this.plans.length);
     },
-    addPriceList(id) {
-      this.plans[id].items.push({
-        itemTitle: "",
-        price: "",
+    addPriceList(index) {
+      this.plans[index].items.push({
+        name: this.inputName,
+        price: this.inputPrice,
       });
+      this.plans[index].sumItemPrice =
+        this.plans[index].sumItemPrice + Number(this.inputPrice);
+      this.totalPrice += Number(this.inputPrice);
+      this.inputName = "";
+      this.inputPrice = 0;
     },
     addImageList(index) {
       this.plans[index].images.push({
@@ -730,15 +781,6 @@ export default {
     },
     cancel() {
       this.$router.push("/main");
-    },
-    sumItemPrice(index, i) {
-      this.plans[index].sumItemPrice += Number(
-        this.plans[index].items[i].price
-      );
-      return Number(this.plans[index].sumItemPrice);
-    },
-    sumTotalPrice(index, i) {
-      this.totalPrice += Number(this.plans[index].items[i].price);
     },
   },
 };

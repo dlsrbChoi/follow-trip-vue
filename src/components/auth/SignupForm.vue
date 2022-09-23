@@ -186,7 +186,7 @@
 
         <div class="d-flex justify-content-end gap-1 mt-5 pb-5">
           <button type="button" class="btn btn-outline-dark">취소</button>
-          <button type="button" class="btn btn-secondary" @click="signup">
+          <button type="submit" class="btn btn-secondary" @click="signup">
             가입하기
           </button>
         </div>
@@ -257,7 +257,11 @@ export default {
           tel: this.tel,
           address: this.address,
           birth: this.birth,
+          memAgree: this.memAgree,
+          informAgree: this.informAgree,
+          marketingAgree: this.marketingAgree,
         });
+        await this.$router.push("/signup/finish");
       } catch (e) {
         console.log(e.response);
         if (e.response.status === 409) {
@@ -333,8 +337,6 @@ export default {
     signup() {
       if (this.filter() === false) {
         return false;
-      } else {
-        this.$router.push("/signupFinish");
       }
     },
     filter() {

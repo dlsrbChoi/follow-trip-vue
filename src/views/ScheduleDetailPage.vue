@@ -105,82 +105,80 @@
             </ul>
           </nav>
 
-          <div class="border rounded mb-2 mt-3">
-            <div class="d-flex" style="background-color: rgb(246, 246, 246)">
-              <span class="col text-center m-2">리뷰 작성하기</span>
-            </div>
-            <div class="d-flex border-bottom">
-              <span class="col-2 text-center m-2 my-auto">작성자</span>
-              <div
-                class="border-start flex-fill row justify-content-center m-2 ps-3"
-              >
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="닉네임을 입력해주세요."
-                  aria-label="default input example"
-                  v-model="writer"
-                />
+          <form @submit.prevent="reviewWrite" class="form">
+            <div class="border rounded mb-2 mt-3">
+              <div class="d-flex" style="background-color: rgb(246, 246, 246)">
+                <span class="col text-center m-2">리뷰 작성하기</span>
               </div>
-            </div>
-            <div class="d-flex border-bottom">
-              <span class="col-2 text-center m-2 my-auto">평점</span>
-              <div
-                class="border-start flex-fill row justify-content-center m-2"
-              >
-                <select
-                  class="form-select text-center"
-                  aria-label="Default select example"
-                  style="width: 150px"
-                  v-model="rating"
+              <div class="d-flex border-bottom">
+                <span class="col-2 text-center m-2 my-auto">작성자</span>
+                <div
+                  class="border-start flex-fill row justify-content-center m-2 ps-3"
                 >
-                  <option value="">평점</option>
-                  <option value="5.0">5.0</option>
-                  <option value="4.5">4.5</option>
-                  <option value="4.0">4.0</option>
-                  <option value="3.5">3.5</option>
-                  <option value="3.0">3.0</option>
-                  <option value="2.5">2.5</option>
-                  <option value="2.0">2.0</option>
-                  <option value="1.5">1.5</option>
-                  <option value="1.0">1.0</option>
-                  <option value="0.5">0.5</option>
-                  <option value="0.0">0.0</option>
+                  <span class="border-start border-end col text-center m-2">{{
+                    writer
+                  }}</span>
+                </div>
+              </div>
+              <div class="d-flex border-bottom">
+                <span class="col-2 text-center m-2 my-auto">평점</span>
+                <div
+                  class="border-start flex-fill row justify-content-center m-2"
+                >
+                  <select
+                    class="form-select text-center"
+                    aria-label="Default select example"
+                    style="width: 150px"
+                    v-model="rating"
                   >
-                </select>
+                    <option value="">평점</option>
+                    <option value="5.0">5.0</option>
+                    <option value="4.5">4.5</option>
+                    <option value="4.0">4.0</option>
+                    <option value="3.5">3.5</option>
+                    <option value="3.0">3.0</option>
+                    <option value="2.5">2.5</option>
+                    <option value="2.0">2.0</option>
+                    <option value="1.5">1.5</option>
+                    <option value="1.0">1.0</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0.0">0.0</option>
+                    >
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex border-bottom">
+                <span class="col-2 text-center m-2 my-auto">리뷰 내용</span>
+                <div
+                  class="border-start flex-fill row justify-content-center m-2 ps-3"
+                >
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="한줄평을 입력해주세요."
+                    aria-label="default input example"
+                    v-model="context"
+                  />
+                </div>
               </div>
             </div>
-            <div class="d-flex border-bottom">
-              <span class="col-2 text-center m-2 my-auto">리뷰 내용</span>
-              <div
-                class="border-start flex-fill row justify-content-center m-2 ps-3"
+            <div class="d-flex justify-content-end gap-1 mt-3 mb-3">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-dark border-0"
+                @click="cancel()"
               >
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="한줄평을 입력해주세요."
-                  aria-label="default input example"
-                  v-model="content"
-                />
-              </div>
+                돌아가기
+              </button>
+              <button
+                type="submit"
+                class="btn btn-sm btn-danger border-0"
+                style="background-color: #e32066"
+              >
+                등록하기
+              </button>
             </div>
-          </div>
-          <div class="d-flex justify-content-end gap-1 mt-3 mb-3">
-            <button
-              type="button"
-              class="btn btn-sm btn-outline-dark border-0"
-              @click="cancel()"
-            >
-              돌아가기
-            </button>
-            <button
-              type="button"
-              class="btn btn-sm btn-danger border-0"
-              style="background-color: #e32066"
-            >
-              등록하기
-            </button>
-          </div>
+          </form>
         </div>
         <div class="col-4">
           <div class="border rounded">
@@ -237,6 +235,8 @@
 </template>
 
 <script>
+import { createReview } from "@/api/reviews";
+
 export default {
   name: "ScheduleDetailPage",
   data() {
@@ -247,26 +247,37 @@ export default {
       description: "",
 
       // 리뷰 작성
-      writer: "",
+      writer: "최인규",
       rating: "",
-      content: "",
+      context: "",
 
       // 리뷰 리스트
       reviews: [
         {
           name: "",
           rating: "",
-          description: "",
+          context: "",
         },
       ],
     };
   },
   created() {
     this.getScheduleDetail();
-
-    console.log(typeof this.$route.params.id);
   },
   methods: {
+    async reviewWrite() {
+      try {
+        await createReview({
+          scheduleId: "22",
+          grade: this.rating,
+          context: this.context,
+        });
+        alert("리뷰가 등록됐습니다.");
+        //TODO: 리뷰조회 API
+      } catch (e) {
+        console.log(e.response);
+      }
+    },
     getScheduleDetail() {
       if (this.$route.params.id === "0") {
         this.name = "강원도 현지인이 알려주는 명소, 맛집";
