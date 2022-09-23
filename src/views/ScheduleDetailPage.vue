@@ -200,7 +200,7 @@
               <hr />
               <div class="row mt-2">
                 <div class="col-5 my-auto text-black-50">평점/리뷰</div>
-                <div class="col-7 text-center fw-bold my-auto">
+                <div class="col-7 fw-bold my-auto">
                   <i class="fa-solid fa-star me-2" style="color: #e32066"></i
                   ><span>4.5 (15)</span>
                 </div>
@@ -208,10 +208,7 @@
               <hr />
               <div class="d-flex mt-2">
                 <div class="col-5 my-auto text-black-50">포인트</div>
-                <div class="col-7 text-center fw-bold my-auto">
-                  <span>2000</span>
-                  <span>P</span>
-                </div>
+                <div class="col-7 fw-bold my-auto ps-3">2000P</div>
               </div>
               <hr />
               <div class="d-flex justify-content-end gap-1 mt-3 mb-1">
@@ -311,9 +308,12 @@ export default {
       });
     },
     isBuyIt() {
-      this.$router.push({
-        name: "AfterBuySchedulePage",
-      });
+      if (window.confirm("구매하시겠습니까?")) {
+        alert("구매가 완료되었습니다.");
+        this.$router.push({
+          name: "AfterBuySchedulePage",
+        });
+      }
     },
   },
 };

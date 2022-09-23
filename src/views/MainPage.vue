@@ -38,6 +38,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container w-75 card-group gap-1 mb-5">
+              <!-- rating순으로 정렬 -> index 0~3 반복 -->
               <div class="card border rounded">
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
@@ -150,6 +151,7 @@
           </div>
           <div class="carousel-item">
             <div class="container w-75 card-group gap-1 mb-5">
+              <!-- rating순으로 정렬 -> index 4~7 반복 -->
               <div class="card border rounded">
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
@@ -262,6 +264,7 @@
           </div>
           <div class="carousel-item">
             <div class="container w-75 card-group gap-1 mb-5">
+              <!-- rating순으로 정렬 -> index 8~11 반복 -->
               <div class="card border rounded">
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
@@ -607,7 +610,14 @@
                       >
                         {{ item.name }}
                       </div>
-                      <div style="color: #e32066">
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-primary btn-sm me-1"
+                          style="background-color: #e32066; border: none"
+                        >
+                          #{{ item.region }}
+                        </button>
                         <button
                           type="button"
                           class="btn btn-primary btn-sm me-1"

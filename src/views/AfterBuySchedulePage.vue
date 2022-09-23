@@ -27,6 +27,20 @@
         </button>
       </div>
 
+      <div class="mt-4 mb-2 border-bottom">
+        <div class="fs-4 fw-bold mb-3">#추천 일정 요약</div>
+        <div class="row row-cols-1 row-cols-md-3 g-1 mb-5">
+          <!-- 요약 반복 부분 -->
+          <div class="bg-light border rounded col p-3">
+            <div class="fs-2 fw-bold mb-5" style="color: #e32066">#1</div>
+            <div class="fs-5 fw-bold mb-2">A음식점</div>
+            <div>
+              총액 <span class="ms-3" style="color: #e32066">23,000</span>원
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 추천 일정 반복 -->
       <div class="mt-4 mb-5 border-bottom">
         <div class="fs-4 fw-bold">#추천 일정1</div>
@@ -62,11 +76,13 @@
           <div class="fw-bold">주요 일정 내용 및 추천 이유</div>
         </div>
 
-        <div class="mt-5 bg-light border rounded-top p-3 pt-2 pb-2 text-center">
+        <div
+          class="mt-5 bg-light border rounded-top p-3 pt-2 pb-2 mb-1 text-center"
+        >
           <div class="fw-bold">이미지</div>
         </div>
         <div class="row">
-          <div class="w-50 mt-1">
+          <div class="w-50 my-auto p-1">
             <img
               src="@/assets/images/thumbnailExample.png"
               class="card-img-top"
@@ -74,7 +90,15 @@
               style="border-radius: 10px"
             />
           </div>
-          <div class="w-50 mt-1">
+          <div class="w-50 my-auto p-1">
+            <img
+              src="@/assets/images/koreaMap.png"
+              class="card-img-top"
+              alt="..."
+              style="border-radius: 10px"
+            />
+          </div>
+          <div class="w-50 my-auto p-1">
             <img
               src="@/assets/images/thumbnailExample.png"
               class="card-img-top"
@@ -82,7 +106,7 @@
               style="border-radius: 10px"
             />
           </div>
-          <div class="w-50 mt-1">
+          <div class="w-50 my-auto p-1">
             <img
               src="@/assets/images/thumbnailExample.png"
               class="card-img-top"
@@ -119,32 +143,6 @@
           <div>총액</div>
           <div class="text-danger ms-5 me-2">23,000</div>
           <div>원</div>
-        </div>
-      </div>
-
-      <div class="mt-4 mb-2 border-bottom">
-        <div class="fs-4 fw-bold">#추천 일정 요약</div>
-        <div class="row mb-5">
-          <div class="bg-light col-7"></div>
-          <div class="col">
-            <div
-              class="bg-light border rounded-top p-3 pt-2 pb-2 text-center fw-bold"
-            >
-              일정 요약
-            </div>
-            <div class="border rounded mt-1 p-2 text-center fw-bold">
-              장소명1
-            </div>
-            <div class="border rounded mt-1 p-2 text-center fw-bold">
-              장소명2
-            </div>
-            <div class="border rounded mt-1 p-2 text-center fw-bold">
-              장소명3
-            </div>
-            <div class="border rounded mt-1 p-2 text-center fw-bold">
-              장소명4
-            </div>
-          </div>
         </div>
       </div>
 

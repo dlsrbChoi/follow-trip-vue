@@ -46,10 +46,13 @@
           class="fs-3 mt-5 mb-3 ps-3 w-75 fw-bold mx-auto"
           style="color: #e32066"
         >
-          #가장 많이 구매한 일정표
+          #내가 구매한 일정표
         </div>
-        <div class="container w-75 card-group gap-1 mb-5">
-          <div class="card border rounded">
+        <div
+          class="container w-75 row row-cols-1 row-cols-md-3 g-1 mx-auto mb-5"
+        >
+          <!-- 이거 부분 반복 -->
+          <div class="col card h-100">
             <img
               src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
               class="card-img-top rounded-top"
@@ -76,7 +79,8 @@
               <h4 class="card-text mt-2">37,500원</h4>
             </div>
           </div>
-          <div class="card border rounded">
+          <!-- 이거 반복 -->
+          <div class="col card h-100">
             <img
               src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
               class="card-img-top rounded-top"
@@ -103,7 +107,7 @@
               <h4 class="card-text mt-2">37,500원</h4>
             </div>
           </div>
-          <div class="card border rounded">
+          <div class="col card h-100">
             <img
               src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
               class="card-img-top rounded-top"
