@@ -8,27 +8,30 @@
       <div class="mx-auto mt-4 fw-bold w-50">
         <div class="row">
           <div class="col-2 my-auto">이름</div>
-          <div class="col-10 border rounded p-2 my-1">홍길동</div>
+          <div class="col-10 border rounded p-2 my-1">{{ name }}</div>
         </div>
         <div class="row">
           <div class="col-2 my-auto">아이디</div>
-          <div class="col-10 border rounded p-2 my-1">dkladf</div>
+          <div class="col-10 border rounded p-2 my-1">{{ username }}</div>
         </div>
         <div class="row">
           <div class="col-2 my-auto">연락처</div>
-          <div class="col-10 border rounded p-2 my-1">01055484315</div>
+          <div class="col-10 border rounded p-2 my-1">{{ tel }}</div>
         </div>
         <div class="row">
           <div class="col-2 my-auto">주소</div>
-          <div class="col-10 border rounded p-2 my-1">서울시 중랑구</div>
+          <div class="col-10 border rounded p-2 my-1">{{ address }}</div>
         </div>
         <div class="row">
           <div class="col-2 my-auto">생일</div>
-          <div class="col-10 border rounded p-2 my-1">1999-01-55</div>
+          <div class="col-10 border rounded p-2 my-1">{{ birth }}</div>
         </div>
         <div class="row">
           <div class="d-flex justify-content-end gap-1 mt-3 mb-5">
-            <button type="button" class="btn btn-sm btn-outline-dark border-0">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-dark border-0 mx-2"
+            >
               취소
             </button>
             <button
@@ -46,7 +49,7 @@
           class="fs-3 mt-5 mb-3 ps-3 w-75 fw-bold mx-auto"
           style="color: #e32066"
         >
-          #가장 많이 구매한 일정표
+          #내가 구매한 일정표
         </div>
         <div class="container w-75 card-group gap-1 mb-5">
           <div class="card border rounded">
@@ -154,53 +157,28 @@
 </template>
 
 <script>
-import { validateEmail } from "@/utils/validation";
+import { userInfo } from "@/api/auth";
+
 export default {
-  name: "LoginPage",
+  name: "userInfoPage",
   data() {
     return {
+      name: "",
       username: "",
-      password: "",
-      logMessage: "",
+      tel: "",
+      address: "",
+      birth: "",
     };
   },
-  computed: {
-    userEmailValidClass() {
-      if (!this.username) {
-        return;
-      }
-      return validateEmail(this.username) ? "valid" : "invalid";
-    },
-    isUserEmailValid() {
-      return validateEmail(this.username);
-    },
+  async created() {
+    const { data } = await userInfo();
+    this.name = data.data.name;
+    this.username = data.data.username;
+    this.tel = data.data.tel;
+    this.address = data.data.address;
+    this.birth = data.data.birth;
   },
-  methods: {
-    async submitForm() {
-      try {
-        // 비즈니스 로직
-        const userData = {
-          username: this.username,
-          password: this.password,
-        };
-        await this.$store.dispatch("LOGIN", userData);
-        await this.$router.push("/main");
-      } catch (error) {
-        // 에러 핸들링할 코드
-        console.log(error.response.data);
-        this.logMessage = error.response.data;
-      } finally {
-        this.initForm();
-      }
-    },
-    initForm() {
-      this.username = "";
-      this.password = "";
-    },
-    kakaoLogin() {
-      console.log("Kakao 로그인");
-    },
-  },
+  methods: {},
 };
 </script>
 

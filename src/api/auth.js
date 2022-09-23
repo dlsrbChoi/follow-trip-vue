@@ -11,4 +11,9 @@ function loginUser(userData) {
   return instance.post("/login", userData);
 }
 
-export { registerUser, loginUser };
+// 유저 정보 API
+function userInfo() {
+  return instance.get("/api/v1/user");
+}
+
+export { registerUser, loginUser, userInfo };

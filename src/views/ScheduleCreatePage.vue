@@ -53,7 +53,7 @@
           </button>
 
           <button
-            v-for="(item, index) in hashtags"
+            v-for="(item, index) in hashes"
             :key="index"
             type="button"
             class="btn btn-primary btn-sm me-1 ms-1"
@@ -129,7 +129,7 @@
             <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
             <div>
               <button
-                v-for="(item, index) in hashtags"
+                v-for="(item, index) in hashes"
                 :key="index"
                 type="button"
                 class="btn btn-primary btn-sm me-1 ms-1"
@@ -570,13 +570,14 @@ export default {
       name: "",
       region: "",
       hashtag: "",
-      hashtags: [],
+      hashes: [],
       hashtagModal: false,
       thumbnail: {
         file_name: "파일을 선택하세요.",
         file: "",
         img_src: "",
       }, // 썸네일 파일
+      images: [],
       plans: [
         {
           checkedPlan: false,
@@ -586,6 +587,7 @@ export default {
           startAt: "",
           endAt: "",
           address: "",
+          imageCnt: 0,
           images: [
             {
               file_name: "파일을 선택하세요.",
@@ -611,27 +613,47 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await createSchedule({
-          name: this.name,
-          region: this.region,
-          description: this.description,
-          plans: this.plans,
-        });
-        await this.$router.push("/main");
-        console.log(response);
+        this.setImgPrams();
+        const reqString = this.setParam();
+        const formData = new FormData();
+        formData.append("reqString", reqString);
+        formData.append("thumbnail", this.thumbnail.file);
+        formData.append("images", this.images);
+        console.log(formData);
+        await createSchedule(formData);
+        // await this.$router.push("/main");
       } catch (error) {
-        console.log(error.response.data.message);
+        console.log(error);
       }
     },
+    setImgPrams() {
+      const plans = this.plans;
+      plans.forEach((plan) => {
+        plan.images.forEach((image) => {
+          this.images.push(image.file);
+          plan.imageCnt += 1;
+        });
+      });
+    },
+    setParam() {
+      const data = {
+        name: this.name,
+        region: this.region,
+        hashes: this.hashes,
+        plans: this.plans,
+        description: this.description,
+      };
+      return JSON.stringify(data);
+    },
     addHashtag(value) {
-      if (this.hashtags.includes(value)) {
+      if (this.hashes.includes(value)) {
         return false;
       } else {
-        this.hashtags.push(value);
+        this.hashes.push(value);
       }
     },
     removeHashtagItem(index) {
-      this.hashtags.splice(index, 1);
+      this.hashes.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -640,7 +662,7 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtags = [];
+      this.hashes = [];
     },
     doSend() {
       this.closeModal();
@@ -654,6 +676,7 @@ export default {
         startAt: "",
         endAt: "",
         address: "",
+        imageCnt: 0,
         images: [
           {
             file_name: "파일을 선택하세요.",

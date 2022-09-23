@@ -53,18 +53,11 @@
           >
             로그인
           </button>
-          <button
-            type="submit"
-            class="btn btn-lg btn-primary border-0"
-            style="width: 100%; background-color: #e32066"
-          >
-            로그인
-          </button>
         </div>
       </form>
       <div class="mt-2 mb-5 fs-6 text-center" style="color: gray">
         <span class="me-3">아직 마켓트립의 회원이 아니신가요?</span>
-        <span>
+        <div>
           <strong
             ><router-link
               to="/signup"
@@ -72,14 +65,16 @@
               >회원가입하러가기</router-link
             ></strong
           >
-        </span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import { loginUser } from "@/api/auth";
 import { validateEmail } from "@/utils/validation";
+// import axios from "axios";
 export default {
   name: "LoginPage",
   data() {

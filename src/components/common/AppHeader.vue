@@ -53,7 +53,11 @@
 
       <template v-else>
         <div class="col-md-3 text-end">
-          <span style="margin-right: 10px">{{ username }} 님</span>
+          <router-link to="/userInfo" style="text-decoration: none">
+            <span style="padding-top: 50px; margin-right: 10px; color: #333333"
+              >{{ username }} 님</span
+            >
+          </router-link>
           <a
             href="javascript:"
             @click="logoutUser"
@@ -76,7 +80,7 @@ export default {
   name: "AppHeader",
   data() {
     return {
-      username: "",
+      username: "a@a.com",
     };
   },
   computed: {

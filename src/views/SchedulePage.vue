@@ -53,7 +53,7 @@
       </button>
 
       <button
-        v-for="(item, index) in hashtagList"
+        v-for="(item, index) in hashes"
         :key="index"
         type="button"
         class="btn btn-primary btn-sm me-1 ms-1"
@@ -129,7 +129,7 @@
         <div>#선택한 태그</div>
         <div>
           <button
-            v-for="(item, index) in hashtagList"
+            v-for="(item, index) in hashes"
             :key="index"
             type="button"
             class="btn btn-primary btn-sm me-1 ms-1"
@@ -170,7 +170,7 @@
 
       <div class="col h-100">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div v-for="(item, index) in scheduleList" :key="index" class="col">
+          <div v-for="(item, index) in schedules" :key="index" class="col">
             <div class="card h-100">
               <!--              <div v-if="item.local === changeLocal">-->
               <router-link
@@ -235,139 +235,21 @@
 
 <script>
 import HashtagModal from "@/components/modals/HashtagModal";
+import { fetchSchedules } from "@/api/schedules";
 
 export default {
   name: "SchedulePage",
   components: { HashtagModal },
   data() {
     return {
-      hashtagList: [],
+      hashes: [],
       local: "",
       hashtagModal: false,
+      schedules: [],
 
       // 페이징
       perPage: 9,
       currentPage: 1,
-
-      scheduleList: [
-        {
-          id: 0,
-          local: "강원도",
-          thumbnail: "",
-          hashtag: "데이트",
-          title: "강원도 여행",
-          rating: "4.8",
-          price: "2,000",
-        },
-        {
-          id: 1,
-          local: "충청북도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "충북 여행",
-          rating: "4.7",
-          price: "2,000",
-        },
-        {
-          id: 2,
-          local: "충청남도",
-          thumbnail: "",
-          hashtag: "놀거리",
-          title: "충남 여행",
-          rating: "4.6",
-          price: "2,000",
-        },
-        {
-          id: 3,
-          local: "수도권",
-          thumbnail: "",
-          hashtag: "데이트",
-          title: "수도권 여행",
-          rating: "4.5",
-          price: "2,000",
-        },
-        {
-          id: 4,
-          local: "경상북도",
-          thumbnail: "",
-          hashtag: "엑티비티",
-          title: "경북 여행",
-          rating: "4.3",
-          price: "2,000",
-        },
-        {
-          id: 5,
-          local: "전라북도",
-          thumbnail: "",
-          hashtag: "기차",
-          title: "전북 여행",
-          rating: "4.2",
-          price: "2,000",
-        },
-        {
-          id: 6,
-          local: "전라남도",
-          thumbnail: "",
-          hashtag: "자동차",
-          title: "전남 여행",
-          rating: "4.1",
-          price: "2,000",
-        },
-        {
-          id: 7,
-          local: "경상남도",
-          thumbnail: "",
-          hashtag: "여행",
-          title: "경남 여행",
-          rating: "3.8",
-          price: "2,000",
-        },
-        {
-          id: 8,
-          local: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-        {
-          id: 9,
-          local: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-        {
-          id: 10,
-          local: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-        {
-          id: 11,
-          local: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-        {
-          id: 12,
-          local: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          title: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-      ],
     };
   },
   created() {
@@ -375,14 +257,14 @@ export default {
   },
   methods: {
     addHashtag(value) {
-      if (this.hashtagList.includes(value)) {
+      if (this.hashes.includes(value)) {
         return false;
       } else {
-        this.hashtagList.push(value);
+        this.hashes.push(value);
       }
     },
     removeHashtagItem(index) {
-      this.hashtagList.splice(index, 1);
+      this.hashes.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -391,16 +273,19 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtagList = [];
+      this.hashes = [];
     },
     doSend() {
       this.closeModal();
     },
-    getScheduleList() {},
+    async getScheduleList() {
+      const { data } = await fetchSchedules();
+      this.schedules = data.data;
+    },
   },
   computed: {
     rows() {
-      return this.scheduleList.length;
+      return this.schedules.length;
     },
     // changeLocal() {
     //   if (this.local === "") {
