@@ -1,12 +1,10 @@
 <template>
   <div class="overflow-auto">
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="my-table"
-    ></b-pagination>
-
+    <div class="d-flex align-items-center mt-5 mb-3">
+      <div class="fs-3">#리뷰 / 평점</div>
+      <i class="fa-solid fa-star ms-3 me-2" style="color: #e32066"></i
+      ><strong>4.5 (15)</strong>
+    </div>
     <p class="mt-3">Current Page: {{ currentPage }}</p>
 
     <b-table
@@ -16,6 +14,13 @@
       :current-page="currentPage"
       small
     ></b-table>
+
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
   </div>
 </template>
 
@@ -26,15 +31,11 @@ export default {
       perPage: 3,
       currentPage: 1,
       items: [
-        { id: 1, first_name: "Fred", last_name: "Flintstone" },
-        { id: 2, first_name: "Wilma", last_name: "Flintstone" },
-        { id: 3, first_name: "Barney", last_name: "Rubble" },
-        { id: 4, first_name: "Betty", last_name: "Rubble" },
-        { id: 5, first_name: "Pebbles", last_name: "Flintstone" },
-        { id: 6, first_name: "Bamm Bamm", last_name: "Rubble" },
-        { id: 7, first_name: "The Great", last_name: "Gazzoo" },
-        { id: 8, first_name: "Rockhead", last_name: "Slate" },
-        { id: 9, first_name: "Pearl", last_name: "Slaghoople" },
+        { name: "최", context: "Fred", rating: "Flintstone" },
+        { name: "김", context: "Fred", rating: "Flintstone" },
+        { name: "박", context: "Fred", rating: "Flintstone" },
+        { name: "이", context: "Fred", rating: "Flintstone" },
+        { name: "이", context: "Fred", rating: "Flintstone" },
       ],
     };
   },

@@ -2,7 +2,7 @@
   <div>
     <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
     <div class="container" style="width: 75%">
-      <form class="form" @submit.prevent="submitForm">
+      <div class="form">
         <div class="mt-5 border-bottom pb-2">
           <span class="fs-4"><strong>일정표 만들기</strong></span>
           <span class="ms-3" style="color: red">*</span
@@ -126,6 +126,15 @@
                 @click="addHashtag('놀거리')"
               />
             </div>
+            <div class="fs-5 mt-3 mb-2">#태그 직접입력하기</div>
+            <div class="mx-3">
+              #<input
+                type="text"
+                class="me-1 ms-1 form-control-sm"
+                v-model="directHashtag"
+                @keyup.enter="addDirectHashtag(`${directHashtag}`)"
+              />
+            </div>
             <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
             <div>
               <button
@@ -150,6 +159,7 @@
                   color: #ffffff;
                   width: 100%;
                 "
+                type="button"
               >
                 추가하기
               </button>
@@ -279,6 +289,7 @@
                   <option value="음식점">음식점</option>
                   <option value="장소">장소</option>
                   <option value="카페">카페</option>
+                  <option value="숙소">숙소</option>
                   <option value="액티비티">액티비티</option>
                   <option value="기타">기타</option>
                 </select>
@@ -356,35 +367,41 @@
                   </button>
                 </span>
               </span>
-              <div v-for="(m, i) in item.images" :key="i">
-                <div>
-                  <input
-                    class="form-control form-control-sm mt-3"
-                    id="formFileSm"
-                    type="file"
-                    @change="handleImageChange(index, i)"
-                    style="width: 50%"
-                  />
-                </div>
-                <label class="form-label mt-3" for="customFile">
-                  {{ m.file_name }}
-                </label>
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-sm mx-2"
-                  @click="removeImg(index, i)"
+              <div style="display: flex; flex-wrap: wrap">
+                <div
+                  v-for="(m, i) in item.images"
+                  :key="i"
+                  style="width: 330px"
+                  class="me-3"
                 >
-                  X
-                </button>
-                <div>
-                  <img
-                    v-if="m.img_src"
-                    :src="m.img_src"
-                    width="500"
-                    height="380"
-                    alt=""
-                    style="margin-top: 10px"
-                  />
+                  <div>
+                    <input
+                      class="form-control form-control-sm mt-3"
+                      id="formFileSm"
+                      type="file"
+                      @change="handleImageChange(index, i)"
+                    />
+                  </div>
+                  <label class="form-label mt-3" for="customFile">
+                    {{ m.file_name }}
+                  </label>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm mx-2"
+                    @click="removeImg(index, i)"
+                  >
+                    X
+                  </button>
+                  <div>
+                    <img
+                      v-if="m.img_src"
+                      :src="m.img_src"
+                      width="180px"
+                      height="120px"
+                      alt=""
+                      style="margin-top: 10px"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -451,23 +468,16 @@
                   :key="i"
                 >
                   <div class="input-group col">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder=""
-                      v-model="n.name"
-                      disabled
-                    />
+                    <div type="text" class="form-control">{{ n.name }}</div>
                   </div>
                   <div class="input-group col">
-                    <input
+                    <div
                       type="number"
                       class="form-control"
                       style="border-right: none; text-align: right"
-                      placeholder="가격을 입력해주세요."
-                      v-model="n.price"
-                      disabled
-                    />
+                    >
+                      {{ n.price | makeComma }}
+                    </div>
                     <span
                       class="input-group-text"
                       style="background-color: white; border-left: none"
@@ -545,11 +555,12 @@
             type="submit"
             class="btn btn-danger border-0"
             style="background-color: #e32066"
+            @click="submitForm"
           >
-            저장
+            등록
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -569,7 +580,7 @@ export default {
     return {
       name: "",
       region: "",
-      hashtag: "",
+      directHashtag: "",
       hashes: [],
       hashtagModal: false,
       thumbnail: {
@@ -601,7 +612,7 @@ export default {
         },
       ],
       inputName: "",
-      inputPrice: 0,
+      inputPrice: "",
 
       totalPrice: 0,
       description: "",
@@ -612,16 +623,21 @@ export default {
   },
   methods: {
     async submitForm() {
+      if (this.filter() === false) {
+        return false;
+      }
+
       try {
         this.setImgPrams();
         const reqString = this.setParam();
         const formData = new FormData();
         formData.append("reqString", reqString);
         formData.append("thumbnail", this.thumbnail.file);
-        formData.append("images", this.images);
-        console.log(formData);
+        this.images.forEach((image) => {
+          formData.append("images", image);
+        });
         await createSchedule(formData);
-        // await this.$router.push("/main");
+        await this.$router.push("/main");
       } catch (error) {
         console.log(error);
       }
@@ -651,6 +667,14 @@ export default {
       } else {
         this.hashes.push(value);
       }
+    },
+    addDirectHashtag(value) {
+      if (this.hashes.includes(value)) {
+        return false;
+      } else {
+        this.hashes.push(value);
+      }
+      this.directHashtag = "";
     },
     removeHashtagItem(index) {
       this.hashes.splice(index, 1);
@@ -688,9 +712,17 @@ export default {
         items: [],
         sumItemPrice: 0,
       });
-      console.log(this.plans.length);
     },
     addPriceList(index) {
+      if (!this.inputName) {
+        alert("항목명을 입력해주세요.");
+        return false;
+      }
+
+      if (this.inputPrice === "") {
+        this.inputPrice = "0";
+      }
+
       this.plans[index].items.push({
         name: this.inputName,
         price: this.inputPrice,
@@ -699,7 +731,7 @@ export default {
         this.plans[index].sumItemPrice + Number(this.inputPrice);
       this.totalPrice += Number(this.inputPrice);
       this.inputName = "";
-      this.inputPrice = 0;
+      this.inputPrice = "";
     },
     addImageList(index) {
       this.plans[index].images.push({
@@ -721,13 +753,6 @@ export default {
       const item = this.plans.splice(id, 1);
       this.plans.splice(id + 1, 0, item[0]);
     },
-    // allChecked() {
-    //   for (let i = 0; i < this.planList.length; i++) {
-    //     this.planList[i].checkedPlan
-    //       ? (this.planList[i].checkedPlan = false)
-    //       : (this.planList[i].checkedPlan = true);
-    //   }
-    // },
     selectRemove() {
       for (let i = 0; i < this.plans.length; i++) {
         if (this.plans[i].checkedPlan === true) {
@@ -781,6 +806,67 @@ export default {
     },
     cancel() {
       this.$router.push("/main");
+    },
+    filter() {
+      if (!this.name || this.name.trim() === "") {
+        alert("일정표명을 입력해주세요.");
+        return false;
+      }
+
+      if (!this.region || this.region.trim() === "") {
+        alert("지역을 선택해주세요.");
+        return false;
+      }
+
+      if (this.hashes.length === 0) {
+        alert("태그를 1개이상 설정해주세요.");
+        return false;
+      }
+
+      if (!this.thumbnail.file) {
+        alert("썸네일을 등록해주세요.");
+        return false;
+      }
+      if (!this.description || this.description.trim() === "") {
+        alert("내 일정 추천내용을 입력해주세요.");
+        return false;
+      }
+      for (let index = 0; index < this.plans.length; index++) {
+        if (!this.plans[index].category) {
+          alert(`추천일정${index + 1}의 카테고리를 선택해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].name) {
+          alert(`추천일정${index + 1}의 장소명을 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].startAt) {
+          alert(`추천일정${index + 1}의 추천시간대를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].endAt) {
+          alert(`추천일정${index + 1}의 추천시간대를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].address) {
+          alert(`추천일정${index + 1}의 주소를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].description) {
+          alert(`추천일정${index + 1}의 장소추천내용 입력해주세요.`);
+          return false;
+        }
+        for (let i = 0; i < this.plans[index].images.length; i++) {
+          if (!this.plans[index].images[i].file) {
+            alert(`추천일정${index + 1}의 관련이미지를 입력해주세요.`);
+            return false;
+          }
+        }
+        if (this.plans[index].items.length === 0) {
+          alert(`추천일정${index + 1}의 가격설정을 1개이상 입력해주세요.`);
+          return false;
+        }
+      }
     },
   },
 };

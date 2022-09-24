@@ -62,7 +62,7 @@ const router = new VueRouter({
     },
     {
       path: "/test",
-      component: () => import("@/test/MultiImageUpload"),
+      component: () => import("@/test/vforTest"),
     },
   ],
 });

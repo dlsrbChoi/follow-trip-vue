@@ -35,370 +35,380 @@
             aria-label="Slide 3"
           ></button>
         </div>
-        <div
-          class="carousel-inner"
-          v-for="(item, index) in schedules"
-          :key="index"
-        >
-          <div class="carousel-item active">
+        <div class="carousel-inner">
+          <div
+            class="carousel-item active"
+            v-for="(item, index) in schedules"
+            :key="index"
+          >
             <div class="container w-75 card-group gap-1 mb-5">
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[0].name }}
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: item.scheduleId,
+                  },
+                }"
+                style="text-decoration: none"
+              >
+                <div class="card border rounded">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                    class="card-img-top rounded-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <div class="card-title fw-bold mb-3" style="color: black">
+                      {{ item.name }}
+                    </div>
+                    <div style="color: #e32066">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-sm me-1"
+                        style="background-color: #e32066; border: none"
+                      >
+                        #{{ item.hashes[0] }}
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        style="background-color: #e32066; border: none"
+                      >
+                        #{{ item.hashes[1] }}
+                      </button>
+                    </div>
+                    <h4 class="card-text mt-2" style="color: black">2000P</h4>
                   </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[0].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[0].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
                 </div>
-              </div>
+              </router-link>
 
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[1].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[1].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[1].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[2].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[2].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[2].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[3].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[3].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[3].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
+              <!--              <div class="card border rounded">-->
+              <!--                <img-->
+              <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+              <!--                  class="card-img-top rounded-top"-->
+              <!--                  alt="..."-->
+              <!--                />-->
+              <!--                <div class="card-body">-->
+              <!--                  <div class="card-title fw-bold mb-3">-->
+              <!--                    {{ item[1].name }}-->
+              <!--                  </div>-->
+              <!--                  <div style="color: #e32066">-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm me-1"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[1].hashes[0] }}-->
+              <!--                    </button>-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[1].hashes[1] }}-->
+              <!--                    </button>-->
+              <!--                  </div>-->
+              <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+              <!--                </div>-->
+              <!--              </div>-->
+              <!--              <div class="card border rounded">-->
+              <!--                <img-->
+              <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+              <!--                  class="card-img-top rounded-top"-->
+              <!--                  alt="..."-->
+              <!--                />-->
+              <!--                <div class="card-body">-->
+              <!--                  <div class="card-title fw-bold mb-3">-->
+              <!--                    {{ item[2].name }}-->
+              <!--                  </div>-->
+              <!--                  <div style="color: #e32066">-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm me-1"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[2].hashes[0] }}-->
+              <!--                    </button>-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[2].hashes[1] }}-->
+              <!--                    </button>-->
+              <!--                  </div>-->
+              <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+              <!--                </div>-->
+              <!--                <img-->
+              <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+              <!--                  class="card-img-top rounded-top"-->
+              <!--                  alt="..."-->
+              <!--                />-->
+              <!--                <div class="card-body">-->
+              <!--                  <div class="card-title fw-bold mb-3">-->
+              <!--                    {{ item[3].name }}-->
+              <!--                  </div>-->
+              <!--                  <div style="color: #e32066">-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm me-1"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[3].hashes[0] }}-->
+              <!--                    </button>-->
+              <!--                    <button-->
+              <!--                      type="button"-->
+              <!--                      class="btn btn-primary btn-sm"-->
+              <!--                      style="background-color: #e32066; border: none"-->
+              <!--                    >-->
+              <!--                      #{{ item[3].hashes[1] }}-->
+              <!--                    </button>-->
+              <!--                  </div>-->
+              <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+              <!--                </div>-->
+              <!--              </div>-->
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="container w-75 card-group gap-1 mb-5">
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[4].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[4].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[4].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[5].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[5].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[5].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[6].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[6].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[6].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
-              <div class="card border rounded">
-                <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                  class="card-img-top rounded-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <div class="card-title fw-bold mb-3">
-                    {{ item.schedules[7].name }}
-                  </div>
-                  <div style="color: #e32066">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[7].hashes[0] }}
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm"
-                      style="background-color: #e32066; border: none"
-                    >
-                      #{{ item.schedules[7].hashes[1] }}
-                    </button>
-                  </div>
-                  <h4 class="card-text mt-2">2000P</h4>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="container w-75 card-group gap-1 mb-5">
-                <div class="card border rounded">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                    class="card-img-top rounded-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <div class="card-title fw-bold mb-3">
-                      {{ item.schedules[8].name }}
-                    </div>
-                    <div style="color: #e32066">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm me-1"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[8].hashes[0] }}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[8].hashes[1] }}
-                      </button>
-                    </div>
-                    <h4 class="card-text mt-2">2000P</h4>
-                  </div>
-                </div>
-                <div class="card border rounded">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                    class="card-img-top rounded-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <div class="card-title fw-bold mb-3">
-                      {{ item.schedules[9].name }}
-                    </div>
-                    <div style="color: #e32066">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm me-1"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[9].hashes[0] }}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[9].hashes[1] }}
-                      </button>
-                    </div>
-                    <h4 class="card-text mt-2">2000P</h4>
-                  </div>
-                </div>
-                <div class="card border rounded">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                    class="card-img-top rounded-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <div class="card-title fw-bold mb-3">
-                      {{ item.schedules[10].name }}
-                    </div>
-                    <div style="color: #e32066">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm me-1"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[10].hashes[0] }}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[10].hashes[1] }}
-                      </button>
-                    </div>
-                    <h4 class="card-text mt-2">2000P</h4>
-                  </div>
-                </div>
-                <div class="card border rounded">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-                    class="card-img-top rounded-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <div class="card-title fw-bold mb-3">
-                      {{ item.schedules[11].name }}
-                    </div>
-                    <div style="color: #e32066">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm me-1"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[11].hashes[0] }}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        style="background-color: #e32066; border: none"
-                      >
-                        #{{ item.schedules[11].hashes[1] }}
-                      </button>
-                    </div>
-                    <h4 class="card-text mt-2">2000P</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="carousel-item">-->
+          <!--            <div class="container w-75 card-group gap-1 mb-5">-->
+          <!--              <div class="card border rounded">-->
+          <!--                <img-->
+          <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                  class="card-img-top rounded-top"-->
+          <!--                  alt="..."-->
+          <!--                />-->
+          <!--                <div class="card-body">-->
+          <!--                  <div class="card-title fw-bold mb-3">-->
+          <!--                    {{ item[4].name }}-->
+          <!--                  </div>-->
+          <!--                  <div style="color: #e32066">-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm me-1"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[4].hashes[0] }}-->
+          <!--                    </button>-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[4].hashes[1] }}-->
+          <!--                    </button>-->
+          <!--                  </div>-->
+          <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--              <div class="card border rounded">-->
+          <!--                <img-->
+          <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                  class="card-img-top rounded-top"-->
+          <!--                  alt="..."-->
+          <!--                />-->
+          <!--                <div class="card-body">-->
+          <!--                  <div class="card-title fw-bold mb-3">-->
+          <!--                    {{ item[5].name }}-->
+          <!--                  </div>-->
+          <!--                  <div style="color: #e32066">-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm me-1"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[5].hashes[0] }}-->
+          <!--                    </button>-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[5].hashes[1] }}-->
+          <!--                    </button>-->
+          <!--                  </div>-->
+          <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--              <div class="card border rounded">-->
+          <!--                <img-->
+          <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                  class="card-img-top rounded-top"-->
+          <!--                  alt="..."-->
+          <!--                />-->
+          <!--                <div class="card-body">-->
+          <!--                  <div class="card-title fw-bold mb-3">-->
+          <!--                    {{ item[6].name }}-->
+          <!--                  </div>-->
+          <!--                  <div style="color: #e32066">-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm me-1"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[6].hashes[0] }}-->
+          <!--                    </button>-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[6].hashes[1] }}-->
+          <!--                    </button>-->
+          <!--                  </div>-->
+          <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--              <div class="card border rounded">-->
+          <!--                <img-->
+          <!--                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                  class="card-img-top rounded-top"-->
+          <!--                  alt="..."-->
+          <!--                />-->
+          <!--                <div class="card-body">-->
+          <!--                  <div class="card-title fw-bold mb-3">-->
+          <!--                    {{ item[7].name }}-->
+          <!--                  </div>-->
+          <!--                  <div style="color: #e32066">-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm me-1"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[7].hashes[0] }}-->
+          <!--                    </button>-->
+          <!--                    <button-->
+          <!--                      type="button"-->
+          <!--                      class="btn btn-primary btn-sm"-->
+          <!--                      style="background-color: #e32066; border: none"-->
+          <!--                    >-->
+          <!--                      #{{ item[7].hashes[1] }}-->
+          <!--                    </button>-->
+          <!--                  </div>-->
+          <!--                  <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--            <div class="carousel-item">-->
+          <!--              <div class="container w-75 card-group gap-1 mb-5">-->
+          <!--                <div class="card border rounded">-->
+          <!--                  <img-->
+          <!--                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                    class="card-img-top rounded-top"-->
+          <!--                    alt="..."-->
+          <!--                  />-->
+          <!--                  <div class="card-body">-->
+          <!--                    <div class="card-title fw-bold mb-3">-->
+          <!--                      {{ item[8].name }}-->
+          <!--                    </div>-->
+          <!--                    <div style="color: #e32066">-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm me-1"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[8].hashes[0] }}-->
+          <!--                      </button>-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[8].hashes[1] }}-->
+          <!--                      </button>-->
+          <!--                    </div>-->
+          <!--                    <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--                <div class="card border rounded">-->
+          <!--                  <img-->
+          <!--                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                    class="card-img-top rounded-top"-->
+          <!--                    alt="..."-->
+          <!--                  />-->
+          <!--                  <div class="card-body">-->
+          <!--                    <div class="card-title fw-bold mb-3">-->
+          <!--                      {{ item[9].name }}-->
+          <!--                    </div>-->
+          <!--                    <div style="color: #e32066">-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm me-1"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[9].hashes[0] }}-->
+          <!--                      </button>-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[9].hashes[1] }}-->
+          <!--                      </button>-->
+          <!--                    </div>-->
+          <!--                    <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--                <div class="card border rounded">-->
+          <!--                  <img-->
+          <!--                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                    class="card-img-top rounded-top"-->
+          <!--                    alt="..."-->
+          <!--                  />-->
+          <!--                  <div class="card-body">-->
+          <!--                    <div class="card-title fw-bold mb-3">-->
+          <!--                      {{ item[10].name }}-->
+          <!--                    </div>-->
+          <!--                    <div style="color: #e32066">-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm me-1"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[10].hashes[0] }}-->
+          <!--                      </button>-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[10].hashes[1] }}-->
+          <!--                      </button>-->
+          <!--                    </div>-->
+          <!--                    <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--                <div class="card border rounded">-->
+          <!--                  <img-->
+          <!--                    src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"-->
+          <!--                    class="card-img-top rounded-top"-->
+          <!--                    alt="..."-->
+          <!--                  />-->
+          <!--                  <div class="card-body">-->
+          <!--                    <div class="card-title fw-bold mb-3">-->
+          <!--                      {{ item[11].name }}-->
+          <!--                    </div>-->
+          <!--                    <div style="color: #e32066">-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm me-1"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[11].hashes[0] }}-->
+          <!--                      </button>-->
+          <!--                      <button-->
+          <!--                        type="button"-->
+          <!--                        class="btn btn-primary btn-sm"-->
+          <!--                        style="background-color: #e32066; border: none"-->
+          <!--                      >-->
+          <!--                        #{{ item[11].hashes[1] }}-->
+          <!--                      </button>-->
+          <!--                    </div>-->
+          <!--                    <h4 class="card-text mt-2">2000P</h4>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <button
             class="carousel-control-prev"
             type="button"
@@ -446,6 +456,7 @@
                   aria-label=".form-select-sm example"
                   style="border: none"
                   v-model="region"
+                  @change="searchSchedule"
                 >
                   <option value="">선택</option>
                   <option value="수도권">수도권</option>
@@ -564,6 +575,15 @@
                     @click="addHashtag('놀거리')"
                   />
                 </div>
+                <div class="fs-5 mt-3 mb-2">#태그 직접입력하기</div>
+                <div class="mx-3">
+                  #<input
+                    type="text"
+                    class="me-1 ms-1 form-control-sm"
+                    v-model="directHashtag"
+                    @keyup.enter="addDirectHashtag(`${directHashtag}`)"
+                  />
+                </div>
                 <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
                 <div>
                   <button
@@ -602,6 +622,8 @@
                 class="form-control ms-auto"
                 id="search"
                 placeholder="🔍여행지를 검색해보세요."
+                v-model="word"
+                @keydown.enter="searchSchedule"
               />
             </div>
           </div>
@@ -610,12 +632,11 @@
             <div class="col h-100">
               <div class="row row-cols-1 row-cols-md-4 g-1">
                 <div
-                  v-for="(item, index) in schedules"
+                  v-for="(item, index) in scheduleList"
                   :key="index"
                   class="col"
                 >
                   <div class="card h-100">
-                    <!--              <div v-if="item.local === changeLocal">-->
                     <router-link
                       :to="{
                         name: 'ScheduleDetailPage',
@@ -651,29 +672,11 @@
                         </h4>
                       </div>
                     </router-link>
-                    <!--              </div>-->
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mt-2 me-2">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>
@@ -682,7 +685,7 @@
 
 <script>
 import HashtagModal from "@/components/modals/HashtagModal";
-import { fetchSchedules } from "@/api/schedules";
+import { fetchSchedules, mostBuySchedule } from "@/api/schedules";
 
 export default {
   name: "MainPage",
@@ -692,17 +695,53 @@ export default {
       hashtags: [],
       region: "",
       schedules: [],
+      scheduleList: [],
+      word: "",
 
-      // 페이징
+      directHashtag: "",
+
       hashtagModal: false,
-      perPage: 9,
-      currentPage: 1,
     };
   },
   created() {
     this.getScheduleList();
+    this.getTopScheduleList();
   },
   methods: {
+    async getTopScheduleList() {
+      try {
+        const { data } = await mostBuySchedule();
+        this.schedules = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async getScheduleList() {
+      try {
+        const requestData = {
+          region: this.region,
+          word: this.word,
+          hashes: this.hashtags,
+        };
+        const { data } = await fetchSchedules(requestData);
+        this.scheduleList = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async searchSchedule() {
+      try {
+        const requestData = {
+          region: this.region,
+          word: this.word,
+          hashes: this.hashtags,
+        };
+        const { data } = await fetchSchedules(requestData);
+        this.scheduleList = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
     addHashtag(value) {
       if (this.hashtags.includes(value)) {
         return false;
@@ -710,8 +749,17 @@ export default {
         this.hashtags.push(value);
       }
     },
+    addDirectHashtag(value) {
+      if (this.hashtags.includes(value)) {
+        return false;
+      } else {
+        this.hashtags.push(value);
+      }
+      this.directHashtag = "";
+    },
     removeHashtagItem(index) {
       this.hashtags.splice(index, 1);
+      this.searchSchedule();
     },
     openModal() {
       this.hashtagModal = true;
@@ -724,25 +772,8 @@ export default {
     },
     doSend() {
       this.closeModal();
+      this.searchSchedule();
     },
-    async getScheduleList() {
-      const { data } = await fetchSchedules();
-      this.schedules = data.data;
-    },
-  },
-  computed: {
-    rows() {
-      return this.schedules.length;
-    },
-    // changeLocal() {
-    //   if (this.local === "") {
-    //     return "";
-    //   }
-    //
-    //   if (this.local === "강원도") {
-    //     return "강원도";
-    //   }
-    // },
   },
 };
 </script>
