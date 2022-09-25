@@ -176,9 +176,7 @@ export default {
         ],
         content: `${this.content}`,
         onUpdate: ({ getHTML }) => {
-          this.$emit("input", {
-            content: getHTML(),
-          });
+          this.$emit("input", getHTML());
         },
       }),
     };

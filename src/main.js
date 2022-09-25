@@ -15,6 +15,10 @@ Vue.use(BootstrapVue);
 
 Object.keys(filters).forEach((key) => Vue.filter(key, filters[key]));
 
+Vue.filter("makeComma", (val) => {
+  return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+});
+
 window.Kakao.init("9fec04fa20baed0ee099cd83c9111472");
 
 new Vue({

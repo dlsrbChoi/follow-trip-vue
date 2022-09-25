@@ -2,7 +2,7 @@
   <div>
     <img src="@/assets/images/Component19.png" class="card-img" alt="..." />
     <div class="container" style="width: 75%">
-      <form class="form" @submit.prevent="submitForm">
+      <div class="form">
         <div class="mt-5 border-bottom pb-2">
           <span class="fs-4"><strong>일정표 만들기</strong></span>
           <span class="ms-3" style="color: red">*</span
@@ -53,7 +53,7 @@
           </button>
 
           <button
-            v-for="(item, index) in hashtags"
+            v-for="(item, index) in hashes"
             :key="index"
             type="button"
             class="btn btn-primary btn-sm me-1 ms-1"
@@ -126,10 +126,19 @@
                 @click="addHashtag('놀거리')"
               />
             </div>
+            <div class="fs-5 mt-3 mb-2">#태그 직접입력하기</div>
+            <div class="mx-3">
+              #<input
+                type="text"
+                class="me-1 ms-1 form-control-sm"
+                v-model="directHashtag"
+                @keyup.enter="addDirectHashtag(`${directHashtag}`)"
+              />
+            </div>
             <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
             <div>
               <button
-                v-for="(item, index) in hashtags"
+                v-for="(item, index) in hashes"
                 :key="index"
                 type="button"
                 class="btn btn-primary btn-sm me-1 ms-1"
@@ -150,6 +159,7 @@
                   color: #ffffff;
                   width: 100%;
                 "
+                type="button"
               >
                 추가하기
               </button>
@@ -279,6 +289,7 @@
                   <option value="음식점">음식점</option>
                   <option value="장소">장소</option>
                   <option value="카페">카페</option>
+                  <option value="숙소">숙소</option>
                   <option value="액티비티">액티비티</option>
                   <option value="기타">기타</option>
                 </select>
@@ -356,35 +367,41 @@
                   </button>
                 </span>
               </span>
-              <div v-for="(m, i) in item.images" :key="i">
-                <div>
-                  <input
-                    class="form-control form-control-sm mt-3"
-                    id="formFileSm"
-                    type="file"
-                    @change="handleImageChange(index, i)"
-                    style="width: 50%"
-                  />
-                </div>
-                <label class="form-label mt-3" for="customFile">
-                  {{ m.file_name }}
-                </label>
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-sm mx-2"
-                  @click="removeImg(index, i)"
+              <div style="display: flex; flex-wrap: wrap">
+                <div
+                  v-for="(m, i) in item.images"
+                  :key="i"
+                  style="width: 330px"
+                  class="me-3"
                 >
-                  X
-                </button>
-                <div>
-                  <img
-                    v-if="m.img_src"
-                    :src="m.img_src"
-                    width="500"
-                    height="380"
-                    alt=""
-                    style="margin-top: 10px"
-                  />
+                  <div>
+                    <input
+                      class="form-control form-control-sm mt-3"
+                      id="formFileSm"
+                      type="file"
+                      @change="handleImageChange(index, i)"
+                    />
+                  </div>
+                  <label class="form-label mt-3" for="customFile">
+                    {{ m.file_name }}
+                  </label>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm mx-2"
+                    @click="removeImg(index, i)"
+                  >
+                    X
+                  </button>
+                  <div>
+                    <img
+                      v-if="m.img_src"
+                      :src="m.img_src"
+                      width="180px"
+                      height="120px"
+                      alt=""
+                      style="margin-top: 10px"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -407,13 +424,13 @@
                     >* <span class="ms-2" style="color: black">가격</span></span
                   >
                 </div>
-                <div class="row mb-1" v-for="(n, i) in item.items" :key="i">
+                <div class="row mb-1">
                   <div class="input-group col">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="항목명을 입력해주세요."
-                      v-model="n.name"
+                      v-model="inputName"
                     />
                   </div>
                   <div class="input-group col">
@@ -422,21 +439,13 @@
                       class="form-control"
                       style="border-right: none; text-align: right"
                       placeholder="가격을 입력해주세요."
-                      v-model="n.price"
-                      @change="sumItemPrice(index, i), sumTotalPrice(index, i)"
+                      v-model="inputPrice"
                     />
                     <span
                       class="input-group-text"
                       style="background-color: white; border-left: none"
                       >원</span
                     >
-                    <button
-                      type="button"
-                      class="btn btn-secondary btn-sm"
-                      @click="removePrice(index, i)"
-                    >
-                      X
-                    </button>
                   </div>
                 </div>
                 <div class="row ps-3 pe-3">
@@ -453,9 +462,41 @@
                     가격 추가 +
                   </button>
                 </div>
+                <div
+                  class="row mb-1 mt-2"
+                  v-for="(n, i) in item.items"
+                  :key="i"
+                >
+                  <div class="input-group col">
+                    <div type="text" class="form-control">{{ n.name }}</div>
+                  </div>
+                  <div class="input-group col">
+                    <div
+                      type="number"
+                      class="form-control"
+                      style="border-right: none; text-align: right"
+                    >
+                      {{ n.price | makeComma }}
+                    </div>
+                    <span
+                      class="input-group-text"
+                      style="background-color: white; border-left: none"
+                      >원</span
+                    >
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      @click="removePrice(index, i)"
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
                 <div class="d-flex justify-content-end mt-3 fs-3">
                   <span class="me-5">총액</span>
-                  <span style="color: #e32066">{{ item.sumItemPrice }}</span>
+                  <span style="color: #e32066">{{
+                    item.sumItemPrice | makeComma
+                  }}</span>
                   <span>원</span>
                 </div>
               </div>
@@ -467,7 +508,7 @@
         <div class="row justify-content-around border-bottom fs-3 pb-3 pt-3">
           <div class="col"><strong>일정 예상금액</strong></div>
           <div class="col text-end">
-            <span style="color: #e32066">{{ totalPrice }}</span>
+            <span style="color: #e32066">{{ totalPrice | makeComma }}</span>
             <span>원</span>
           </div>
         </div>
@@ -514,11 +555,12 @@
             type="submit"
             class="btn btn-danger border-0"
             style="background-color: #e32066"
+            @click="submitForm"
           >
-            저장
+            등록
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -538,14 +580,15 @@ export default {
     return {
       name: "",
       region: "",
-      hashtag: "",
-      hashtags: [],
+      directHashtag: "",
+      hashes: [],
       hashtagModal: false,
       thumbnail: {
         file_name: "파일을 선택하세요.",
         file: "",
         img_src: "",
       }, // 썸네일 파일
+      images: [],
       plans: [
         {
           checkedPlan: false,
@@ -555,6 +598,7 @@ export default {
           startAt: "",
           endAt: "",
           address: "",
+          imageCnt: 0,
           images: [
             {
               file_name: "파일을 선택하세요.",
@@ -563,15 +607,12 @@ export default {
             },
           ],
           description: "",
-          items: [
-            {
-              name: "",
-              price: 0,
-            },
-          ],
+          items: [],
           sumItemPrice: 0,
         },
       ],
+      inputName: "",
+      inputPrice: "",
 
       totalPrice: 0,
       description: "",
@@ -582,28 +623,61 @@ export default {
   },
   methods: {
     async submitForm() {
-      try {
-        const response = await createSchedule({
-          name: this.name,
-          region: this.region,
-          description: this.description,
-          plans: this.plans,
-        });
-        await this.$router.push("/main");
-        console.log(response);
-      } catch (error) {
-        console.log(error.response.data.message);
+      if (this.filter() === false) {
+        return false;
       }
+
+      try {
+        this.setImgPrams();
+        const reqString = this.setParam();
+        const formData = new FormData();
+        formData.append("reqString", reqString);
+        formData.append("thumbnail", this.thumbnail.file);
+        this.images.forEach((image) => {
+          formData.append("images", image);
+        });
+        await createSchedule(formData);
+        await this.$router.push("/main");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    setImgPrams() {
+      const plans = this.plans;
+      plans.forEach((plan) => {
+        plan.images.forEach((image) => {
+          this.images.push(image.file);
+          plan.imageCnt += 1;
+        });
+      });
+    },
+    setParam() {
+      const data = {
+        name: this.name,
+        region: this.region,
+        hashes: this.hashes,
+        plans: this.plans,
+        description: this.description,
+      };
+      return JSON.stringify(data);
     },
     addHashtag(value) {
-      if (this.hashtags.includes(value)) {
+      if (this.hashes.includes(value)) {
         return false;
       } else {
-        this.hashtags.push(value);
+        this.hashes.push(value);
       }
     },
+    addDirectHashtag(value) {
+      if (this.hashes.includes(value)) {
+        return false;
+      } else {
+        this.hashes.push(value);
+      }
+      this.directHashtag = "";
+    },
     removeHashtagItem(index) {
-      this.hashtags.splice(index, 1);
+      this.hashes.splice(index, 1);
     },
     openModal() {
       this.hashtagModal = true;
@@ -612,7 +686,7 @@ export default {
       this.hashtagModal = false;
     },
     resetHashtagList() {
-      this.hashtags = [];
+      this.hashes = [];
     },
     doSend() {
       this.closeModal();
@@ -626,6 +700,7 @@ export default {
         startAt: "",
         endAt: "",
         address: "",
+        imageCnt: 0,
         images: [
           {
             file_name: "파일을 선택하세요.",
@@ -634,21 +709,29 @@ export default {
           },
         ],
         description: "",
-        items: [
-          {
-            name: "",
-            price: 0,
-          },
-        ],
+        items: [],
         sumItemPrice: 0,
       });
-      console.log(this.plans.length);
     },
-    addPriceList(id) {
-      this.plans[id].items.push({
-        itemTitle: "",
-        price: "",
+    addPriceList(index) {
+      if (!this.inputName) {
+        alert("항목명을 입력해주세요.");
+        return false;
+      }
+
+      if (this.inputPrice === "") {
+        this.inputPrice = "0";
+      }
+
+      this.plans[index].items.push({
+        name: this.inputName,
+        price: this.inputPrice,
       });
+      this.plans[index].sumItemPrice =
+        this.plans[index].sumItemPrice + Number(this.inputPrice);
+      this.totalPrice += Number(this.inputPrice);
+      this.inputName = "";
+      this.inputPrice = "";
     },
     addImageList(index) {
       this.plans[index].images.push({
@@ -670,13 +753,6 @@ export default {
       const item = this.plans.splice(id, 1);
       this.plans.splice(id + 1, 0, item[0]);
     },
-    // allChecked() {
-    //   for (let i = 0; i < this.planList.length; i++) {
-    //     this.planList[i].checkedPlan
-    //       ? (this.planList[i].checkedPlan = false)
-    //       : (this.planList[i].checkedPlan = true);
-    //   }
-    // },
     selectRemove() {
       for (let i = 0; i < this.plans.length; i++) {
         if (this.plans[i].checkedPlan === true) {
@@ -731,14 +807,66 @@ export default {
     cancel() {
       this.$router.push("/main");
     },
-    sumItemPrice(index, i) {
-      this.plans[index].sumItemPrice += Number(
-        this.plans[index].items[i].price
-      );
-      return Number(this.plans[index].sumItemPrice);
-    },
-    sumTotalPrice(index, i) {
-      this.totalPrice += Number(this.plans[index].items[i].price);
+    filter() {
+      if (!this.name || this.name.trim() === "") {
+        alert("일정표명을 입력해주세요.");
+        return false;
+      }
+
+      if (!this.region || this.region.trim() === "") {
+        alert("지역을 선택해주세요.");
+        return false;
+      }
+
+      if (this.hashes.length === 0) {
+        alert("태그를 1개이상 설정해주세요.");
+        return false;
+      }
+
+      if (!this.thumbnail.file) {
+        alert("썸네일을 등록해주세요.");
+        return false;
+      }
+      if (!this.description || this.description.trim() === "") {
+        alert("내 일정 추천내용을 입력해주세요.");
+        return false;
+      }
+      for (let index = 0; index < this.plans.length; index++) {
+        if (!this.plans[index].category) {
+          alert(`추천일정${index + 1}의 카테고리를 선택해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].name) {
+          alert(`추천일정${index + 1}의 장소명을 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].startAt) {
+          alert(`추천일정${index + 1}의 추천시간대를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].endAt) {
+          alert(`추천일정${index + 1}의 추천시간대를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].address) {
+          alert(`추천일정${index + 1}의 주소를 입력해주세요.`);
+          return false;
+        }
+        if (!this.plans[index].description) {
+          alert(`추천일정${index + 1}의 장소추천내용 입력해주세요.`);
+          return false;
+        }
+        for (let i = 0; i < this.plans[index].images.length; i++) {
+          if (!this.plans[index].images[i].file) {
+            alert(`추천일정${index + 1}의 관련이미지를 입력해주세요.`);
+            return false;
+          }
+        }
+        if (this.plans[index].items.length === 0) {
+          alert(`추천일정${index + 1}의 가격설정을 1개이상 입력해주세요.`);
+          return false;
+        }
+      }
     },
   },
 };

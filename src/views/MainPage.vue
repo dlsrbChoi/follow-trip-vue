@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="@/assets/images/mainBanner.png" class="card-img" alt="..." />
-    <div class="container">
+    <div class="container mb-4">
       <div class="fs-3 mt-5 mb-3 w-75 fw-bold mx-auto" style="color: #e32066">
         #가장 많이 구매한 일정표
       </div>
@@ -39,340 +39,511 @@
           <div class="carousel-item active">
             <div class="container w-75 card-group gap-1 mb-5">
               <!-- rating순으로 정렬 -> index 0~3 반복 -->
-              <div class="card border rounded">
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[0].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[0].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[1].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[1].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[2].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[2].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[3].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[3].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[3].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
           <div class="carousel-item">
             <div class="container w-75 card-group gap-1 mb-5">
               <!-- rating순으로 정렬 -> index 4~7 반복 -->
-              <div class="card border rounded">
+              <!--              TODO: index 수정-->
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[0].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[0].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[1].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[1].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[2].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[2].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[3].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[3].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[3].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
           <div class="carousel-item">
             <div class="container w-75 card-group gap-1 mb-5">
               <!-- rating순으로 정렬 -> index 8~11 반복 -->
-              <div class="card border rounded">
+              <!--              TODO: index 수정-->
+
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[0].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[0].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[1].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[1].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[1].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[2].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[2].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[2].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
-              <div class="card border rounded">
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: schedules[3].scheduleId,
+                  },
+                }"
+                class="card border rounded"
+                style="text-decoration: none"
+              >
                 <img
                   src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
                 <div class="card-body">
-                  <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
+                  <div
+                    class="card-title fw-bold mb-3"
+                    style="color: #333333; font-weight: bold; font-size: 15px"
+                  >
+                    {{ schedules[3].name }}
+                  </div>
                   <div style="color: #e32066">
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[3].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #데이트
+                      #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2">37,500원</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -403,7 +574,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <!--    MostBuySchedule end-->
 
       <!--    SchedulePage start-->
       <div
@@ -423,6 +593,7 @@
                 aria-label=".form-select-sm example"
                 style="border: none"
                 v-model="region"
+                @change="searchSchedule"
               >
                 <option value="">선택</option>
                 <option value="수도권">수도권</option>
@@ -541,6 +712,15 @@
                   @click="addHashtag('놀거리')"
                 />
               </div>
+              <div class="fs-5 mt-3 mb-2">#태그 직접입력하기</div>
+              <div class="mx-3">
+                #<input
+                  type="text"
+                  class="me-1 ms-1 form-control-sm"
+                  v-model="directHashtag"
+                  @keyup.enter="addDirectHashtag(`${directHashtag}`)"
+                />
+              </div>
               <div class="fs-5 mt-3 mb-2">#선택한 태그</div>
               <div>
                 <button
@@ -579,6 +759,8 @@
               class="form-control ms-auto"
               id="search"
               placeholder="🔍여행지를 검색해보세요."
+              v-model="word"
+              @keydown.enter="searchSchedule"
             />
           </div>
         </div>
@@ -586,14 +768,17 @@
         <div class="row mt-3">
           <div class="col h-100">
             <div class="row row-cols-1 row-cols-md-4 g-1">
-              <div v-for="(item, index) in schedules" :key="index" class="col">
+              <div
+                v-for="(item, index) in scheduleList"
+                :key="index"
+                class="col"
+              >
                 <div class="card h-100">
-                  <!--              <div v-if="item.local === changeLocal">-->
                   <router-link
                     :to="{
                       name: 'ScheduleDetailPage',
                       params: {
-                        id: item.id,
+                        id: item.scheduleId,
                       },
                     }"
                     style="text-decoration: none"
@@ -606,7 +791,11 @@
                     <div class="card-body">
                       <div
                         class="card-title"
-                        style="color: #333333; font-size: 15px"
+                        style="
+                          color: #333333;
+                          font-size: 15px;
+                          font-weight: bold;
+                        "
                       >
                         {{ item.name }}
                       </div>
@@ -623,37 +812,17 @@
                           class="btn btn-primary btn-sm me-1"
                           style="background-color: #e32066; border: none"
                         >
-                          #{{ item.hashtag }}
+                          #{{ item.hashes[0] }}
                         </button>
                       </div>
-                      <h4 class="card-text mt-2" style="color: black">
-                        {{ item.price }}P
-                      </h4>
+                      <h4 class="card-text mt-2" style="color: black">2000P</h4>
                     </div>
                   </router-link>
-                  <!--              </div>-->
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center mt-2 me-2">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
   </div>
@@ -661,6 +830,7 @@
 
 <script>
 import HashtagModal from "@/components/modals/HashtagModal";
+import { fetchSchedules, mostBuySchedule } from "@/api/schedules";
 
 export default {
   name: "MainPage",
@@ -669,100 +839,53 @@ export default {
     return {
       hashtags: [],
       region: "",
-      hashtagModal: false,
+      schedules: [],
+      scheduleList: [],
+      word: "",
+      directHashtag: "",
 
-      // 페이징
-      perPage: 9,
-      currentPage: 1,
-      schedules: [
-        {
-          id: "0",
-          region: "강원도",
-          thumbnail: "",
-          hashtag: "데이트",
-          name: "강원도 여행",
-          rating: "4.8",
-          price: "2,000",
-        },
-        {
-          id: "1",
-          region: "충청북도",
-          thumbnail: "",
-          hashtag: "맛집",
-          name: "충북 여행",
-          rating: "4.7",
-          price: "2,000",
-        },
-        {
-          id: "2",
-          region: "충청남도",
-          thumbnail: "",
-          hashtag: "놀거리",
-          name: "충남 여행",
-          rating: "4.6",
-          price: "2,000",
-        },
-        {
-          id: "3",
-          region: "수도권",
-          thumbnail: "",
-          hashtag: "데이트",
-          name: "수도권 여행",
-          rating: "4.5",
-          price: "2,000",
-        },
-        {
-          id: "4",
-          region: "경상북도",
-          thumbnail: "",
-          hashtag: "엑티비티",
-          name: "경북 여행",
-          rating: "4.3",
-          price: "2,000",
-        },
-        {
-          id: "5",
-          region: "전라북도",
-          thumbnail: "",
-          hashtag: "기차",
-          name: "전북 여행",
-          rating: "4.2",
-          price: "2,000",
-        },
-        {
-          id: "6",
-          region: "전라남도",
-          thumbnail: "",
-          hashtag: "자동차",
-          name: "전남 여행",
-          rating: "4.1",
-          price: "2,000",
-        },
-        {
-          id: "7",
-          region: "경상남도",
-          thumbnail: "",
-          hashtag: "여행",
-          name: "경남 여행",
-          rating: "3.8",
-          price: "2,000",
-        },
-        {
-          id: "8",
-          region: "제주도",
-          thumbnail: "",
-          hashtag: "맛집",
-          name: "제주도 여행",
-          rating: "5.0",
-          price: "2,000",
-        },
-      ],
+      hashtagModal: false,
     };
   },
-  created() {
-    this.getScheduleList();
+  async created() {
+    await this.getTopScheduleList();
+    await this.getScheduleList();
   },
   methods: {
+    async getTopScheduleList() {
+      try {
+        const { data } = await mostBuySchedule();
+        this.schedules = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async getScheduleList() {
+      try {
+        const requestData = {
+          region: this.region,
+          word: this.word,
+          hashes: this.hashtags,
+        };
+        const { data } = await fetchSchedules(requestData);
+        this.scheduleList = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async searchSchedule() {
+      try {
+        const requestData = {
+          region: this.region,
+          word: this.word,
+          hashes: this.hashtags,
+        };
+        const { data } = await fetchSchedules(requestData);
+        this.scheduleList = data.data.schedules;
+      } catch (e) {
+        console.log(e);
+      }
+    },
     addHashtag(value) {
       if (this.hashtags.includes(value)) {
         return false;
@@ -770,8 +893,17 @@ export default {
         this.hashtags.push(value);
       }
     },
+    addDirectHashtag(value) {
+      if (this.hashtags.includes(value)) {
+        return false;
+      } else {
+        this.hashtags.push(value);
+      }
+      this.directHashtag = "";
+    },
     removeHashtagItem(index) {
       this.hashtags.splice(index, 1);
+      this.searchSchedule();
     },
     openModal() {
       this.hashtagModal = true;
@@ -784,22 +916,8 @@ export default {
     },
     doSend() {
       this.closeModal();
+      this.searchSchedule();
     },
-    getScheduleList() {},
-  },
-  computed: {
-    rows() {
-      return this.scheduleList.length;
-    },
-    // changeLocal() {
-    //   if (this.local === "") {
-    //     return "";
-    //   }
-    //
-    //   if (this.local === "강원도") {
-    //     return "강원도";
-    //   }
-    // },
   },
 };
 </script>
