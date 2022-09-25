@@ -54,107 +54,44 @@
         <div
           class="container w-75 row row-cols-1 row-cols-md-3 g-1 mx-auto mb-5"
         >
-          <!-- 이거 부분 반복 -->
-          <div class="col card h-100">
-            <img
-              src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-              class="card-img-top rounded-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
-              <div style="color: #e32066">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm me-1"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-              </div>
-              <h4 class="card-text mt-2">37,500원</h4>
-            </div>
-          </div>
-          <!-- 이거 반복 -->
-          <div class="col card h-100">
-            <img
-              src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-              class="card-img-top rounded-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
-              <div style="color: #e32066">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm me-1"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-              </div>
-              <h4 class="card-text mt-2">37,500원</h4>
-            </div>
-          </div>
-          <div class="col card h-100">
-            <img
-              src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
-              class="card-img-top rounded-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <div class="card-title fw-bold mb-3">경북궁 먹거리 여행</div>
-              <div style="color: #e32066">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm me-1"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                  style="background-color: #e32066; border: none"
-                >
-                  #데이트
-                </button>
-              </div>
-              <h4 class="card-text mt-2">37,500원</h4>
+          <div v-for="(item, index) in schedules" :key="index" class="col">
+            <div class="col card h-100">
+              <router-link
+                :to="{
+                  name: 'ScheduleDetailPage',
+                  params: {
+                    id: item.scheduleId,
+                  },
+                }"
+                style="text-decoration: none"
+              >
+                <img
+                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  class="card-img-top rounded-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <div
+                    class="card-title"
+                    style="color: #333333; font-size: 15px"
+                  >
+                    {{ item.name }}
+                  </div>
+                  <div style="color: #e32066">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ item.hashes[0] }}
+                    </button>
+                  </div>
+                  <h4 class="card-text mt-2" style="color: black">2000P</h4>
+                </div>
+              </router-link>
             </div>
           </div>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center mt-2 me-2">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
   </div>
@@ -172,6 +109,7 @@ export default {
       tel: "",
       address: "",
       birth: "",
+      schedules: [],
     };
   },
   async created() {
@@ -181,6 +119,7 @@ export default {
     this.tel = data.data.tel;
     this.address = data.data.address;
     this.birth = data.data.birth;
+    this.schedules = data.data.schedules;
   },
   methods: {},
 };

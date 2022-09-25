@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "@/store/index";
-// import { getUserFromCookie } from "@/utils/cookies.js";
+import { getAuthFromCookie } from "@/utils/cookies";
 
 Vue.use(VueRouter);
 
@@ -34,6 +34,7 @@ const router = new VueRouter({
       path: "/userInfo",
       name: "userInfoPage",
       component: () => import("@/views/userInfoPage"),
+      beforeEnter,
     },
     {
       path: "/main",
@@ -54,26 +55,28 @@ const router = new VueRouter({
       path: "/schedule/detail/purchase/:id",
       name: "AfterBuySchedulePage",
       component: () => import("@/views/AfterBuySchedulePage"),
+      beforeEnter,
     },
     {
       path: "/schedule/create",
       name: "ScheduleCreatePage",
       component: () => import("@/views/ScheduleCreatePage"),
+      beforeEnter,
     },
     {
       path: "/test",
-      component: () => import("@/test/MultiImageUpload"),
+      component: () => import("@/test/vforTest"),
     },
   ],
 });
 
-// function beforeEnter(to, from, next) {
-//   if (store.getters["isLoggedIn"] || getUserFromCookie()) {
-//     next();
-//   } else {
-//     alert("로그인이 필요합니다.");
-//     next("/login");
-//   }
-// }
+function beforeEnter(to, from, next) {
+  if (store.getters["isLoggedIn"] || getAuthFromCookie()) {
+    next();
+  } else {
+    alert("로그인이 필요합니다.");
+    next("/login");
+  }
+}
 
 export default router;
