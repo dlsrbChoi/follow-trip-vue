@@ -71,13 +71,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[0].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[0].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -112,13 +119,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[1].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[1].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -153,13 +167,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[2].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[2].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -194,13 +215,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[3].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[3].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
             </div>
@@ -208,7 +236,6 @@
           <div class="carousel-item">
             <div class="container w-75 card-group gap-1 mb-5">
               <!-- rating순으로 정렬 -> index 4~7 반복 -->
-              <!--              TODO: index 수정-->
               <router-link
                 :to="{
                   name: 'ScheduleDetailPage',
@@ -241,13 +268,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[4].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[4].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -282,13 +316,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[5].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[5].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -323,13 +364,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[6].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[6].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -364,13 +412,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[7].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[7].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
             </div>
@@ -412,13 +467,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[8].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[8].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -453,13 +515,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[9].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[9].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -494,13 +563,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[10].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[10].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
               <router-link
@@ -535,13 +611,20 @@
                     </button>
                     <button
                       type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ schedules[11].hashes[0] }}
+                    </button>
+                    <button
+                      type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
                       #{{ schedules[11].hashes[1] }}
                     </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
+                  <h4 class="card-text mt-2" style="color: #333333">300P</h4>
                 </div>
               </router-link>
             </div>
@@ -815,7 +898,7 @@
                           #{{ item.hashes[0] }}
                         </button>
                       </div>
-                      <h4 class="card-text mt-2" style="color: black">2000P</h4>
+                      <h4 class="card-text mt-2" style="color: black">300P</h4>
                     </div>
                   </router-link>
                 </div>

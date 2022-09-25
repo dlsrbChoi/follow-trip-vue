@@ -27,6 +27,10 @@
           <div class="col-10 border rounded p-2 my-1">{{ birth }}</div>
         </div>
         <div class="row">
+          <div class="col-2 my-auto">내포인트</div>
+          <div class="col-10 border rounded p-2 my-1">{{ point }}</div>
+        </div>
+        <div class="row">
           <div class="d-flex justify-content-end gap-1 mt-3 mb-5">
             <button
               type="button"
@@ -66,7 +70,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  :src="thumbnailPath(item.thumbnail)"
+                  :src="thumbnailPath(index)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -92,8 +96,14 @@
                     >
                       #{{ item.hashes[0] }}
                     </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #e32066; border: none"
+                    >
+                      #{{ item.hashes[1] }}
+                    </button>
                   </div>
-                  <h4 class="card-text mt-2" style="color: black">2000P</h4>
                 </div>
               </router-link>
             </div>
@@ -117,6 +127,7 @@ export default {
       address: "",
       birth: "",
       schedules: [],
+      point: 0,
     };
   },
   async created() {
@@ -127,10 +138,14 @@ export default {
     this.address = data.data.address;
     this.birth = data.data.birth;
     this.schedules = data.data.schedules;
+    this.point = data.data.point;
   },
   methods: {
-    thumbnailPath(item) {
-      return "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" + item;
+    thumbnailPath(index) {
+      return (
+        "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" +
+        this.schedules[index].thumbnail
+      );
     },
   },
 };

@@ -24,10 +24,11 @@
 
       <div class="mt-4 mb-2 border-bottom">
         <div class="fs-4 fw-bold mb-3">#추천 일정 요약</div>
-        <div class="row row-cols-1 row-cols-md-3 g-1 mb-5">
+        <div class="row row-cols-1 row-cols-md-3 g-1 mb-5 w-100">
           <!-- 요약 반복 부분 -->
           <div
-            class="bg-light border rounded col p-3"
+            class="bg-light border rounded col p-3 me-2"
+            style="width: 31%"
             v-for="(item, index) in plans"
             :key="index"
           >
@@ -66,7 +67,9 @@
         <div class="border rounded mt-1 mb-3 p-3">
           <div class="hstack gap-3 text-center">
             <div class="col-2 fw-bold">{{ item.category }}</div>
-            <div class="col-4 fw-bold border-start">00:00 ~ 00:00</div>
+            <div class="col-4 fw-bold border-start">
+              {{ item.startAt }} ~ {{ item.endAt }}
+            </div>
             <div class="col fw-bold border-start">{{ item.name }}</div>
           </div>
         </div>
@@ -95,13 +98,9 @@
           <div class="fw-bold">이미지</div>
         </div>
         <div class="row">
-          <div
-            v-for="(images, index) in item.images"
-            :key="index"
-            class="w-50 my-auto p-1"
-          >
+          <div class="w-50 my-auto p-1" v-for="(m, i) in item.images" :key="i">
             <img
-              :src="thumbnailPath(images)"
+              :src="thumbnailPath(m)"
               class="card-img-top"
               alt="..."
               style="border-radius: 10px"
@@ -153,16 +152,11 @@
       </div>
 
       <div class="d-flex justify-content-end gap-1 mt-3 mb-5">
-        <button type="button" class="btn btn-sm btn-outline-dark border-0">
-          돌아가기
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-danger border-0"
-          style="background-color: #e32066"
-        >
-          공유하기
-        </button>
+        <router-link to="/main">
+          <button type="button" class="btn btn-sm btn-outline-dark border-0">
+            돌아가기
+          </button>
+        </router-link>
       </div>
     </div>
   </div>

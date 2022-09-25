@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="mb-5">
     <img src="@/assets/images/Component22.png" class="card-img" alt="..." />
     <div class="container" style="width: 55%">
       <div class="fs-3 mt-5">#현지인이 추천하는 일정표</div>
       <div class="mt-3 pb-3">
+        <div class="fs-4 mb-2 fw-bold">{{ name }}</div>
         <button
           type="button"
           class="btn btn-secondary btn-sm mx-1"
@@ -26,7 +27,7 @@
         <div class="col-8">
           <div class="mb-5">
             <img
-              src="@/assets/images/thumbnailExample.png"
+              :src="thumbnailPath(thumbnail)"
               class="card-img-top h-100"
               alt="..."
               style="border-radius: 10px"
@@ -84,7 +85,7 @@
           <!--          </nav>-->
           <!--          reviewList end-->
 
-          <div class="form">
+          <div class="form" v-if="this.isBuy === 1">
             <div class="border rounded mb-2 mt-3">
               <div class="d-flex" style="background-color: rgb(246, 246, 246)">
                 <span class="col text-center m-2">리뷰 작성하기</span>
@@ -186,7 +187,7 @@
               <hr />
               <div class="d-flex mt-2">
                 <div class="col-5 my-auto text-black-50">포인트</div>
-                <div class="col-7 fw-bold my-auto ps-3">2000P</div>
+                <div class="col-7 fw-bold my-auto ps-3">300P</div>
               </div>
               <hr />
               <div
@@ -237,18 +238,21 @@
 <script>
 import { createReview } from "@/api/reviews";
 import { fetchSchedule, buySchedule } from "@/api/schedules";
+import { mapGetters } from "vuex";
+import { userInfo } from "@/api/auth";
 
 export default {
   name: "ScheduleDetailPage",
   data() {
     return {
-      region: "강원도",
+      region: "",
       hashtags: [],
       name: "",
       description: "",
+      thumbnail: "",
 
       // 리뷰 작성
-      writer: "최인규",
+      writer: "",
       rating: "",
       context: "",
 
@@ -263,8 +267,9 @@ export default {
       currentPage: 1,
     };
   },
-  created() {
-    this.getScheduleDetail();
+  async created() {
+    await this.getScheduleDetail();
+    await this.getUserInfo();
   },
   methods: {
     async getScheduleDetail() {
@@ -278,6 +283,15 @@ export default {
         this.description = data.data.description;
         this.reviews = data.data.reviews;
         this.isBuy = data.data.isBuy;
+        this.thumbnail = data.data.thumbnail;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async getUserInfo() {
+      try {
+        const { data } = await userInfo();
+        this.writer = data.data.name;
       } catch (e) {
         console.log(e);
       }
@@ -326,8 +340,12 @@ export default {
         name: "AfterBuySchedulePage",
       });
     },
+    thumbnailPath(item) {
+      return "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" + item;
+    },
   },
   computed: {
+    ...mapGetters(["isLoggedIn"]),
     rows() {
       return this.reviews.length;
     },
