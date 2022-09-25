@@ -835,15 +835,14 @@ export default {
       schedules: [],
       scheduleList: [],
       word: "",
-
       directHashtag: "",
 
       hashtagModal: false,
     };
   },
-  created() {
-    this.getScheduleList();
-    this.getTopScheduleList();
+  async created() {
+    await this.getTopScheduleList();
+    await this.getScheduleList();
   },
   methods: {
     async getTopScheduleList() {

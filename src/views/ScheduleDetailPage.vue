@@ -319,6 +319,8 @@ export default {
           });
         } catch (e) {
           console.log(e);
+          alert("로그인이 필요합니다.");
+          this.$router.push("/login");
         }
       }
     },
