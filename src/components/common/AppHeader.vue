@@ -96,6 +96,10 @@ export default {
       this.$store.commit("LOGOUT");
       this.$router.push("/");
     },
+    async loginUser() {
+      const { data } = await userInfo();
+      this.name = data.data.name;
+    },
   },
 };
 </script>

@@ -639,8 +639,15 @@ export default {
         await createSchedule(formData);
         await this.$router.push("/main");
       } catch (error) {
+        this.resetImages();
         console.log(error);
       }
+    },
+    resetImages() {
+      this.plans.forEach((plan) => {
+        plan.imageCnt = 0;
+      });
+      this.images = [];
     },
     setImgPrams() {
       const plans = this.plans;
@@ -658,6 +665,8 @@ export default {
         hashes: this.hashes,
         plans: this.plans,
         description: this.description,
+        totalPrice: this.totalPrice,
+        isGuide: this.guideCheck,
       };
       return JSON.stringify(data);
     },
@@ -785,7 +794,11 @@ export default {
         name.endsWith(".jpg") ||
         name.endsWith(".jpeg") ||
         name.endsWith(".png") ||
-        name.endsWith(".gif")
+        name.endsWith(".gif") ||
+        name.endsWith(".JPG") ||
+        name.endsWith(".JPEG") ||
+        name.endsWith(".PNG") ||
+        name.endsWith(".GIF")
       )
         this.thumbnail.img_src = URL.createObjectURL(file);
       else this.thumbnail.img_src = "";
@@ -799,7 +812,11 @@ export default {
         name.endsWith(".jpg") ||
         name.endsWith(".jpeg") ||
         name.endsWith(".png") ||
-        name.endsWith(".gif")
+        name.endsWith(".gif") ||
+        name.endsWith(".JPG") ||
+        name.endsWith(".JPEG") ||
+        name.endsWith(".PNG") ||
+        name.endsWith(".GIF")
       )
         this.plans[index].images[i].img_src = URL.createObjectURL(file);
       else this.plans[index].images[i].img_src = "";

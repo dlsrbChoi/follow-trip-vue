@@ -50,7 +50,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(0)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -91,7 +91,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(1)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -132,7 +132,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(2)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -173,7 +173,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(3)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -197,7 +197,7 @@
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[1] }}
+                      #{{ schedules[3].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -213,14 +213,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[0].scheduleId,
+                    id: schedules[4].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(4)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -229,7 +229,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[0].name }}
+                    {{ schedules[4].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -237,14 +237,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[0] }}
+                      #{{ schedules[4].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[1] }}
+                      #{{ schedules[4].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -254,14 +254,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[1].scheduleId,
+                    id: schedules[5].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(5)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -270,7 +270,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[1].name }}
+                    {{ schedules[5].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -278,14 +278,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[1].hashes[0] }}
+                      #{{ schedules[5].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[1].hashes[1] }}
+                      #{{ schedules[5].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -295,14 +295,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[2].scheduleId,
+                    id: schedules[6].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(6)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -311,7 +311,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[2].name }}
+                    {{ schedules[6].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -319,14 +319,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[2].hashes[0] }}
+                      #{{ schedules[6].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[2].hashes[1] }}
+                      #{{ schedules[6].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -336,14 +336,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[3].scheduleId,
+                    id: schedules[7].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(7)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -352,7 +352,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[3].name }}
+                    {{ schedules[7].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -360,14 +360,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[3].hashes[0] }}
+                      #{{ schedules[7].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[1] }}
+                      #{{ schedules[7].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -384,14 +384,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[0].scheduleId,
+                    id: schedules[8].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(8)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -400,7 +400,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[0].name }}
+                    {{ schedules[8].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -408,14 +408,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[0] }}
+                      #{{ schedules[8].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[1] }}
+                      #{{ schedules[8].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -425,14 +425,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[1].scheduleId,
+                    id: schedules[9].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(9)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -441,7 +441,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[1].name }}
+                    {{ schedules[9].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -449,14 +449,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[1].hashes[0] }}
+                      #{{ schedules[9].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[1].hashes[1] }}
+                      #{{ schedules[9].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -466,14 +466,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[2].scheduleId,
+                    id: schedules[10].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(10)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -482,7 +482,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[2].name }}
+                    {{ schedules[10].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -490,14 +490,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[2].hashes[0] }}
+                      #{{ schedules[10].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[2].hashes[1] }}
+                      #{{ schedules[10].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -507,14 +507,14 @@
                 :to="{
                   name: 'ScheduleDetailPage',
                   params: {
-                    id: schedules[3].scheduleId,
+                    id: schedules[11].scheduleId,
                   },
                 }"
                 class="card border rounded"
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailTopPath(11)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -523,7 +523,7 @@
                     class="card-title fw-bold mb-3"
                     style="color: #333333; font-weight: bold; font-size: 15px"
                   >
-                    {{ schedules[3].name }}
+                    {{ schedules[11].name }}
                   </div>
                   <div style="color: #e32066">
                     <button
@@ -531,14 +531,14 @@
                       class="btn btn-primary btn-sm me-1"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[3].hashes[0] }}
+                      #{{ schedules[11].hashes[0] }}
                     </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm"
                       style="background-color: #e32066; border: none"
                     >
-                      #{{ schedules[0].hashes[1] }}
+                      #{{ schedules[11].hashes[1] }}
                     </button>
                   </div>
                   <h4 class="card-text mt-2" style="color: #333333">2000P</h4>
@@ -575,7 +575,7 @@
         </button>
       </div>
 
-      <!--    SchedulePage start-->
+      <!--      SchedulePage start-->
       <div
         class="fs-3 mt-5 pt-5 mb-3 w-75 border-top fw-bold mx-auto"
         style="color: #e32066"
@@ -784,7 +784,7 @@
                     style="text-decoration: none"
                   >
                     <img
-                      src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                      :src="thumbnailPath(item.thumbnail)"
                       class="card-img-top rounded-top"
                       alt="..."
                     />
@@ -803,7 +803,7 @@
                         <button
                           type="button"
                           class="btn btn-primary btn-sm me-1"
-                          style="background-color: #e32066; border: none"
+                          style="background-color: #4a80ff; border: none"
                         >
                           #{{ item.region }}
                         </button>
@@ -917,6 +917,15 @@ export default {
     doSend() {
       this.closeModal();
       this.searchSchedule();
+    },
+    thumbnailPath(item) {
+      return "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" + item;
+    },
+    thumbnailTopPath(index) {
+      return (
+        "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" +
+        this.schedules[index].thumbnail
+      );
     },
   },
 };

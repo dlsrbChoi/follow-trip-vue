@@ -103,8 +103,10 @@ export default {
           username: this.username,
           password: this.password,
         };
-        await this.$store.dispatch("LOGIN", userData);
-        await this.$router.push("/main");
+        await this.$store.dispatch("LOGIN", userData).then(() => {
+          this.$router.push("/main");
+          location.reload();
+        });
       } catch (error) {
         // 에러 핸들링할 코드
         console.log(error.response.data);
