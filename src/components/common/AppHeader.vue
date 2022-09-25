@@ -55,7 +55,7 @@
         <div class="col-md-3 text-end">
           <router-link to="/userInfo" style="text-decoration: none">
             <span style="padding-top: 50px; margin-right: 10px; color: #333333"
-              >{{ username }} 님</span
+              >{{ name }} 님</span
             >
           </router-link>
           <a
@@ -75,13 +75,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { userInfo } from "@/api/auth";
 
 export default {
   name: "AppHeader",
   data() {
     return {
-      username: "a@a.com",
+      name: "",
     };
+  },
+  async created() {
+    const { data } = await userInfo();
+    this.name = data.data.name;
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
