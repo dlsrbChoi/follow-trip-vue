@@ -65,9 +65,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[0].hashes[0] }}
+                      #{{ schedules[0].region }}
                     </button>
                     <button
                       type="button"
@@ -106,9 +106,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[1].hashes[0] }}
+                      #{{ schedules[1].region }}
                     </button>
                     <button
                       type="button"
@@ -147,9 +147,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[2].hashes[0] }}
+                      #{{ schedules[2].region }}
                     </button>
                     <button
                       type="button"
@@ -188,9 +188,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[3].hashes[0] }}
+                      #{{ schedules[3].region }}
                     </button>
                     <button
                       type="button"
@@ -235,9 +235,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[4].hashes[0] }}
+                      #{{ schedules[4].region }}
                     </button>
                     <button
                       type="button"
@@ -276,9 +276,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[5].hashes[0] }}
+                      #{{ schedules[5].region }}
                     </button>
                     <button
                       type="button"
@@ -317,9 +317,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[6].hashes[0] }}
+                      #{{ schedules[6].region }}
                     </button>
                     <button
                       type="button"
@@ -358,9 +358,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[7].hashes[0] }}
+                      #{{ schedules[7].region }}
                     </button>
                     <button
                       type="button"
@@ -406,9 +406,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[8].hashes[0] }}
+                      #{{ schedules[8].region }}
                     </button>
                     <button
                       type="button"
@@ -447,9 +447,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[9].hashes[0] }}
+                      #{{ schedules[9].region }}
                     </button>
                     <button
                       type="button"
@@ -488,9 +488,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[10].hashes[0] }}
+                      #{{ schedules[10].region }}
                     </button>
                     <button
                       type="button"
@@ -529,9 +529,9 @@
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
-                      style="background-color: #e32066; border: none"
+                      style="background-color: #4a80ff; border: none"
                     >
-                      #{{ schedules[11].hashes[0] }}
+                      #{{ schedules[11].region }}
                     </button>
                     <button
                       type="button"

@@ -20,7 +20,7 @@
             class="btn btn-primary btn-sm m-1 p-1"
             aria-hidden="true"
             style="
-              background-color: #e32066;
+              background-color: #4a80ff;
               border-radius: 5px;
               border: none;
               position: absolute;

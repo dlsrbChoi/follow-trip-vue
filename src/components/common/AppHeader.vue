@@ -93,8 +93,10 @@ export default {
   },
   methods: {
     logoutUser() {
-      this.$store.commit("LOGOUT");
-      this.$router.push("/");
+      if (confirm("로그아웃 하시겠습니까?")) {
+        this.$store.commit("LOGOUT");
+        this.$router.push("/");
+      }
     },
     async loginUser() {
       const { data } = await userInfo();

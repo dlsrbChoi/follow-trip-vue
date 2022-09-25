@@ -26,11 +26,21 @@
         <div class="fs-4 fw-bold mb-3">#추천 일정 요약</div>
         <div class="row row-cols-1 row-cols-md-3 g-1 mb-5">
           <!-- 요약 반복 부분 -->
-          <div class="bg-light border rounded col p-3">
-            <div class="fs-2 fw-bold mb-5" style="color: #e32066">#1</div>
-            <div class="fs-5 fw-bold mb-2">A음식점</div>
+          <div
+            class="bg-light border rounded col p-3"
+            v-for="(item, index) in plans"
+            :key="index"
+          >
+            <div class="fs-2 fw-bold mb-5" style="color: #e32066">
+              #{{ index + 1 }}
+            </div>
+            <div class="fs-5 fw-bold mb-2">{{ item.name }}</div>
             <div>
-              총액 <span class="ms-3" style="color: #e32066">23,000</span>원
+              총액
+              <span class="ms-3" style="color: #e32066">{{
+                item.sumItemPrice
+              }}</span
+              >원
             </div>
           </div>
         </div>
@@ -61,7 +71,7 @@
           </div>
         </div>
 
-        <div class="mt-5 bg-light border rounded-top p-3 pt-2 pb-2 text-center">
+        <div class="mt-2 bg-light border rounded-top p-3 pt-2 pb-2 text-center">
           <div class="fw-bold">주소</div>
         </div>
         <div class="border rounded mt-1 mb-3 p-3">
@@ -70,7 +80,7 @@
           </div>
         </div>
 
-        <div class="mt-5 bg-light border rounded-top p-3 pt-2 pb-2 text-center">
+        <div class="mt-2 bg-light border rounded-top p-3 pt-2 pb-2 text-center">
           <div class="fw-bold">추천 내용</div>
         </div>
         <div class="border rounded mt-1 mb-3 p-3">
@@ -80,38 +90,18 @@
         </div>
 
         <div
-          class="mt-5 bg-light border rounded-top p-3 pt-2 pb-2 mb-1 text-center"
+          class="mt-2 bg-light border rounded-top p-3 pt-2 pb-2 mb-1 text-center"
         >
           <div class="fw-bold">이미지</div>
         </div>
         <div class="row">
-          <div class="w-50 my-auto p-1">
+          <div
+            v-for="(images, index) in item.images"
+            :key="index"
+            class="w-50 my-auto p-1"
+          >
             <img
-              src="@/assets/images/thumbnailExample.png"
-              class="card-img-top"
-              alt="..."
-              style="border-radius: 10px"
-            />
-          </div>
-          <div class="w-50 my-auto p-1">
-            <img
-              src="@/assets/images/koreaMap.png"
-              class="card-img-top"
-              alt="..."
-              style="border-radius: 10px"
-            />
-          </div>
-          <div class="w-50 my-auto p-1">
-            <img
-              src="@/assets/images/thumbnailExample.png"
-              class="card-img-top"
-              alt="..."
-              style="border-radius: 10px"
-            />
-          </div>
-          <div class="w-50 my-auto p-1">
-            <img
-              src="@/assets/images/thumbnailExample.png"
+              :src="thumbnailPath(images)"
               class="card-img-top"
               alt="..."
               style="border-radius: 10px"
@@ -207,6 +197,9 @@ export default {
       this.description = data.data.description;
       this.totalPrice = data.data.totalPrice;
       this.plans = data.data.plans;
+    },
+    thumbnailPath(item) {
+      return "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" + item;
     },
   },
 };

@@ -66,7 +66,7 @@
                 style="text-decoration: none"
               >
                 <img
-                  src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"
+                  :src="thumbnailPath(item.thumbnail)"
                   class="card-img-top rounded-top"
                   alt="..."
                 />
@@ -78,6 +78,13 @@
                     {{ item.name }}
                   </div>
                   <div style="color: #e32066">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm me-1"
+                      style="background-color: #4a80ff; border: none"
+                    >
+                      #{{ item.region }}
+                    </button>
                     <button
                       type="button"
                       class="btn btn-primary btn-sm me-1"
@@ -121,7 +128,11 @@ export default {
     this.birth = data.data.birth;
     this.schedules = data.data.schedules;
   },
-  methods: {},
+  methods: {
+    thumbnailPath(item) {
+      return "https://s3.ap-northeast-2.amazonaws.com/road.3144.bucket/" + item;
+    },
+  },
 };
 </script>
 
