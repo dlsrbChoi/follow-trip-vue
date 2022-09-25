@@ -63,10 +63,6 @@ const router = new VueRouter({
       component: () => import("@/views/ScheduleCreatePage"),
       beforeEnter,
     },
-    {
-      path: "/test",
-      component: () => import("@/test/vforTest"),
-    },
   ],
 });
 
