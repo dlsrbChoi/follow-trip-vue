@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="@/assets/images/Component22.png" class="card-img" alt="..." />
+    <img src="@/assets/images/Component20.png" class="card-img" alt="..." />
     <div class="container" style="width: 45%">
       <div class="fs-3 mt-5 fw-bold">#{{ name }}</div>
       <div class="mt-3 pb-3">
