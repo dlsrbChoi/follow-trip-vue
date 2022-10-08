@@ -1,29 +1,9 @@
 # 2022 SW프로젝트 경진대회_따라와입
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 프로젝트 정보
+|프로젝트 명|마켓트립 – 현지인이 추천하는 여행 일정표를 확인해보세요!|
+|프로젝트 소개|- 여행객들을 위한 현지인이 추천하는 여행 일정표를 마트처럼 판매/구매할 수 있는 플랫폼입니다.
+- 여행을 했던 곳, 자신의 지역에 자신만 알고 있는 명소, 맛집, 놀거리 등을 짜여진 틀에 따라 작성하며, 여행 일정표를 만들어 판매할 수 있습니다. 여행 일정표를 만들기 귀찮은 여행객은 플랫폼을 통해 일정표를 구매하고 참고하여 여행을 즐길 수 있습니다.
+- MBTI 중 J(계획형 - 공급자)가 계획한 여행 계획표를 P(무계획형 - 수요자)가 구매하여 여행을 즐길 수 있습니다.
+- 여행장소로 유명하지는 않지만, 정말 좋은 장소들을 추천하여 지역경제 활성화에 도움을 줄 수 있습니다.
+- 실제 동작하는 웹페이지입니다.|
