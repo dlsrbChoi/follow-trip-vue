@@ -23,16 +23,16 @@
 |  **유저 정보**   |・유저의 정보를 확인할 수 있으며, 내가 구매한 일정표를 확인할 수 있습니다. |
 
 ### 다. 결과물 상세 이미지
-- [ 메인 ]
-![메인페이지](marketTripUI/marketTripUI_main.png)
-- [ 유저정보 ]
-![유저정보](marketTripUI/marketTripUI_userInfo.png)
-- [ 일정표 만들기 ]
-![일정표 만들기](marketTripUI/marketTripUI_create.png)
-- [ 일정표 구매 전 ]
-![일정표 구매 전](marketTripUI/marketTripUI_detail.png)
-- [ 일정표 구매 후 ]
-![일정표 구매 후](marketTripUI/marketTripUI_afterBuy.png)
+- [ 메인 ] </br>
+  <img src="marketTripUI/marketTripUI_main.png" width="70%" height="50%" alt="메인" />
+- [ 유저정보 ] </br> 
+  <img src="marketTripUI/marketTripUI_userInfo.png" width="70%" height="50%" alt="유저정보" />
+- [ 일정표 만들기 ] </br>
+  <img src="marketTripUI/marketTripUI_create.png" width="70%" height="50%" alt="일정표 만들기" />
+- [ 일정표 구매 전 ] </br>
+  <img src="marketTripUI/marketTripUI_detail.png" width="70%" height="50%" alt="일정표 구매 전" />
+- [ 일정표 구매 후 ] </br>
+<img src="marketTripUI/marketTripUI_afterBuy.png" width="70%" height="50%" alt="일정표 구매 후" />
 
 
 ### 라. 문제점 및 해결방안
@@ -56,3 +56,8 @@
 - 광고 수수료 : ‘마켓트립’ 양쪽 공간에 광고 추가
 - 포인트 충전 : 일정표 구매를 위한 포인트 충전
 - 중개 수수료 : 일정 정보의 서비스 활성화
+
+## 공모전 결과
+### SW프로젝트 경진대회 우수상 수상, SW페스티벌 시연
+<img src="marketTripUI/SWfestival_demonstrate.jpg" width="48%" height="50%" alt="시연" />
+<img src="marketTripUI/SWproject_prize.jpg" width="48%" height="50%" alt="우수상" />
